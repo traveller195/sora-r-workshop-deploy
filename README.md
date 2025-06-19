@@ -1,5 +1,11 @@
 # sora-r-workshop-deploy
 
+# initial steps for testing
+
+- pip3 install jupyter-notebook
+
+- binder example repo: https://github.com/binder-examples/r
+
 
 
 ## Getting started
