@@ -1,5 +1,8 @@
 FROM jupyter/r-notebook:latest
 
+# Step 1: Switch to root
+USER root
+
 # Install Quarto CLI
 RUN apt-get update && \
     apt-get install -y wget gdebi-core && \
@@ -30,3 +33,6 @@ RUN Rscript -e "IRkernel::installspec(user = FALSE)"
 
 # Ensure Quarto works with R
 ENV QUARTO_DENO_DIR="/opt/deno"
+
+# Step 3: Switch back to unprivileged user
+USER ${NB_USER}
