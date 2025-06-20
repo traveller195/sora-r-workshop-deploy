@@ -1,4 +1,4 @@
-FROM jupyter/r-notebook:2025-06-01
+FROM jupyter/r-notebook:latest
 
 # Install Quarto CLI
 RUN apt-get update && \
