@@ -11,10 +11,7 @@ RUN apt-get update && \
     rm quarto-1.5.50-linux-amd64.deb
 
 # Install R packages
-RUN Rscript -e "install.packages(c('tidyverse', 'IRkernel'), repos='https://cloud.r-project.org')" && \
-    Rscript -e "install.packages(c('data.table', 'IRkernel'), repos='https://cloud.r-project.org')" && \
-    Rscript -e "install.packages(c('plotly', 'IRkernel'), repos='https://cloud.r-project.org')" && \
-    Rscript -e "install.packages(c('ggplot2', 'IRkernel'), repos='https://cloud.r-project.org')" && \
+RUN Rscript -e "install.packages(c('ggplot2', 'IRkernel'), repos='https://cloud.r-project.org')" && \
     Rscript -e "install.packages(c('leaflet', 'IRkernel'), repos='https://cloud.r-project.org')" && \
     Rscript -e "install.packages(c('httr2', 'IRkernel'), repos='https://cloud.r-project.org')" && \
     Rscript -e "install.packages(c('utils', 'IRkernel'), repos='https://cloud.r-project.org')" && \
