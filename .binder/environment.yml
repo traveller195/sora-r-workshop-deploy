@@ -1,5 +1,0 @@
-name: quarto-r-env
-channels:
-  - conda-forge
-dependencies:
-  - quarto
