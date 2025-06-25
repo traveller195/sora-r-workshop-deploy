@@ -275,7 +275,7 @@ sora_dp_overview <- function(data_dp = NULL,
     }
   }
   
-  # case only one value is selected
+  # 1. case: only one value is selected
   if (!is.null(arg_1) && is.null(arg_2)){
     if (is.element(arg_1, colnames_dp)){
       overview_dp <- as.data.frame(table(data_dp[, arg_1]))
@@ -283,7 +283,7 @@ sora_dp_overview <- function(data_dp = NULL,
     } 
   }
   
-  # case two values are selected
+  # 2. case: two values are selected
   if (!is.null(arg_1) && !is.null(arg_2)){
     if (is.element(arg_1, colnames_dp) && is.element(arg_2, colnames_dp)){
       overview_dp <- as.data.frame.array(table(data_dp[, arg_1], data_dp[, arg_2]))
@@ -293,21 +293,19 @@ sora_dp_overview <- function(data_dp = NULL,
                                          sort_by = sort_by,
                                          arg = arg_1)
       }
-      if (!is.element("title", names(overview_dp))){
+      if (!is.element(arg_1, names(overview_dp))){
         overview_dp <- as.data.frame(cbind(rownames(overview_dp), overview_dp))
         names(overview_dp)[1] <- arg_1
         row.names(overview_dp) <- NULL
       }
     } else {
       used_argument <- c(arg_1, arg_2)[which(!is.element(c(arg_1, arg_2), colnames_dp))]
-      sora_abort(
-        sprintf(
-          "`%s` | used argument does not exist.",
-          used_argument
-        )
-      )
+      sora_abort(sprintf("argument: `%s` does not exist", used_argument[1]))
     }
-  }  
+  }
+  if (any(duplicated(names(overview_dp)))){
+    overview_dp <- overview_dp[,unique(names(overview_dp))]
+  }
   as_df(overview_dp)
 }
 
@@ -387,34 +385,21 @@ sora_dp_get_id <- function(data_dp = NULL,
     
     if (!is.null(arg)){
       if(!is.element(arg, colnames_dp)){
-        sora_abort(
-          sprintf(
-            "`%s` | used argument does not exist.",
-            arg
-          )
-        )
+        sora_abort(sprintf("argument: `%s` does not exist", arg))
       }
     }
-    
     overview_dp <- data_dp[relevant_data, c("title", "time_frame", "spatial_resolution", arg, dataset_id)]
     
     ## check if one column is a duplicate
     if (!is.null(arg)){
-      duplicate_column <- is.element(arg, names(overview_dp))
-      if (duplicate_column){
+      if (is.element(arg, names(overview_dp))){
         overview_dp[, 4] <- NULL
       }
     }
     as_df(overview_dp)
   } else {
-    compare_names <- c(colnames_dp, values_title)
-    used_argument <- c(indicator, dataset_id)[which(!is.element(c(indicator, dataset_id), compare_names))]
-    sora_abort(
-      sprintf(
-        "`%s` | used argument does not exist.",
-        used_argument
-      )
-    )
+    used_argument <- c(indicator, dataset_id)[which(!is.element(c(indicator, dataset_id), c(colnames_dp, values_title)))]
+    sora_abort(sprintf("argument: `%s` does not exist", used_argument))
   }
 }
 

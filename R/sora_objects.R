@@ -84,8 +84,10 @@ sora_custom <- function(.data, crs = NULL) {
   if (all(req_cols %in% names(.data))) {
     .data <- .data[req_cols]
   } else {
-    .data <- .data[c(1, 2, 3)]
-    names(.data) <- req_cols
+    sora_abort(
+      "Some of the required columns in `.data` are missing.",
+      "i" = "Please make sure that the dataset has the columns: 'id', 'x', 'y'."
+    )
   }
   
   if (anyNA(.data$x) || anyNA(.data$y)) {
