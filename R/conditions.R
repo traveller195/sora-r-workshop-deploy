@@ -275,7 +275,11 @@ get_main_caller <- function() {
 #' @returns A string.
 #' @noRd
 main_call_rgx <- function() {
-  exports <- getNamespaceExports("sora")
+  if (loadable("sora")){
+    exports <- getNamespaceExports("sora")
+  } else {
+    exports <- ls(environment())
+  }
   rgx <- paste(exports, collapse = "|")
   sprintf("^(%s)\\(", rgx)
 }
