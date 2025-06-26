@@ -1,0 +1,213 @@
+<!DOCTYPE html><html><head><title>R: Commission a linking job</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_request {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Commission a linking job</h2>
+
+<h3>Description</h3>
+
+<p>Send request to the SoRa API. After the request has been
+made, a linking job is created in the SoRa API. After it is finished,
+you can retrieve the requests using <code>sora_results</code>.
+</p>
+<p>To see if your linking job is successful without actually commissioning
+a request you can use <code>sora_simulate</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_request(
+  dataset,
+  link_to,
+  method,
+  ...,
+  provenance = sora_provenance(),
+  wait = FALSE,
+  provider = "IOER",
+  verbose = NULL,
+  api_key = NULL
+)
+
+sora_simulate(
+  dataset,
+  link_to,
+  method,
+  ...,
+  provenance = sora_provenance(),
+  provider = "IOER",
+  api_key = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="dataset">dataset</code></td>
+<td>
+<p>An object of class <code>sora_custom</code>,
+<code>sora_provided</code>, or <code>sora_admin</code>. Each object
+type assumes a different type of data input:
+</p>
+
+<ul>
+<li><p><code>sora_custom</code> is used to provide your own point data.
+</p>
+</li>
+<li><p><code>sora_provided</code> is used to link to a dataset provided by the
+SoRa service. These are either sensitive microdata or structural datasets
+that mirror the distribution of microdata.
+</p>
+</li>
+<li><p><code>sora_admin</code> is used to provide identifiers from regional
+administrative datasets, e.g. zip codes or municipalities.
+</p>
+</li></ul>
+</td></tr>
+<tr><td><code id="link_to">link_to</code></td>
+<td>
+<p>An object of class <code>sora_spatial</code> or a character
+string containing a valid dataset ID in <code>sora_spatial</code>. This
+argument is used to specify the spatial dataset to link your <code>dataset</code>
+to. It can either be a spatial dataset provided by SoRa or a dataset provided
+by you.</p>
+</td></tr>
+<tr><td><code id="method">method</code></td>
+<td>
+<p>An object of class <code>sora_linking</code> or a character
+string containing a valid linking method in <code>sora_linking</code>.
+This argument specifies how to link the data provided in <code>dataset</code>
+and <code>link_to</code>.</p>
+</td></tr>
+<tr><td><code id="...">...</code></td>
+<td>
+<p>If <code>method</code> is a character string, you can use <code>...</code>
+to provide further arguments to <code>sora_linking</code>.</p>
+</td></tr>
+<tr><td><code id="provenance">provenance</code></td>
+<td>
+<p>An object of class <code>sora_provenance</code> or
+a logical value that specifies if and how to generate a provenance record.
+If a user-provided dataset is passed, additional information are needed to
+create such a record. By default, no provenance record is produced.</p>
+</td></tr>
+<tr><td><code id="wait">wait</code></td>
+<td>
+<p>Whether to wait for the results using <code>sora_wait</code>.
+If <code>TRUE</code>, runs <code>sora_job_done</code> repeatedly until the
+linking is finished and then fetches the results using
+<code>sora_results</code>. You can interrupt this process at any time and
+continue manually. If <code>FALSE</code>, immediately returns the job ID after
+the request has been commissioned. Defaults to <code>FALSE</code>. In interactive
+sessions, a spinner is shown which can be disabled using
+<code>options(sora_spinner = FALSE)</code>.</p>
+</td></tr>
+<tr><td><code id="provider">provider</code></td>
+<td>
+<p>ID of a linking service provider to perform the
+spatial linking. Defaults to <code>"IOER"</code>.</p>
+</td></tr>
+<tr><td><code id="verbose">verbose</code></td>
+<td>
+<p>A logical, character string or <code>NULL</code> that specifies if
+and how to produce messages. If <code>FALSE</code>, suppresses all informative
+messages. If a path is provided, stores all messages in the specified file.
+If <code>NULL</code>, verbosity depends on <code>getOption("sora_verbose")</code>. Use
+the latter to set verbosity across the entire session, e.g. to suppress
+messages from all package functions. Defaults to <code>NULL</code> and
+<code>getOption("sora_verbose")</code> defaults to <code>TRUE</code>, i.e., display
+messages where reasonable.</p>
+</td></tr>
+<tr><td><code id="api_key">api_key</code></td>
+<td>
+<p>A valid SoRa API key. Required to communicate with the SoRa
+API. You can request a key by filling out
+<a href="https://sora.gesis.org/unofficial/sora-user-mod/users/request-api-key">this form</a>
+on the SoRa website.
+</p>
+<p>If <code>NULL</code>, reads a key from the <code>SORA_API_KEY</code>
+environment variable.
+</p>
+<p>If &quot;ask&quot; (and the session is interactive), opens a masked prompt where you
+can enter your key. The entered key is persistently stored in an environment
+variable and can be used across sessions.
+</p>
+<p>Please note that you are advised not to enter your key directly using this
+argument. If you do, please make sure that you do not publish any code files
+containing the key in plain text. Failure to do so can compromise your
+access to the SoRa API.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>If <code>wait = FALSE</code>, a job ID of the job that has been created by
+commissioning the request. You can use this ID to poll the status of the
+linking and fetch its results (see <code>sora_results</code>). If
+<code>wait = TRUE</code>, automates this workflow and returns a dataframe
+containing the results of the linking job.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>sora_results</code>, <code>sora_job_status</code>,
+<code>sora_job_done</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+sora_data &lt;- sora_custom(ber_income, crs = 3035)
+spat_data &lt;- sora_spatial("ioer-monitor-s02rg-2023-1000m")
+linking &lt;- sora_linking(
+  method = "aggregate_attribute",
+  selection_area = "square",
+  length = 2500,
+  output = c("mean", "median", "sd")
+)
+
+# Check if request can be commissioned
+sora_simulate(sora_data, link_to = spat_data, method = linking)
+
+# Then commission the request
+jid &lt;- sora_request(sora_data, link_to = spat_data, method = linking)
+
+# A commissioned request can take some time to finish. After finishing
+# you can fetch the results.
+sora_wait(jid)
+
+# Alternatively, for simpler queries, you can directly insert the raw
+# string values instead of constructing objects first.
+sora_simulate(
+  sora_data,
+  link_to = "ioer-monitor-s02rg-2023-1000m",
+  method = "aggregate_attribute",
+  selection_area = "circle",
+  radius = 1000,
+  output = "median"
+)
+
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>

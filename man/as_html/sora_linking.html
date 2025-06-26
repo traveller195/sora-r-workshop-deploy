@@ -1,0 +1,1164 @@
+<!DOCTYPE html><html><head><title>R: Linking method</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_linking {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Linking method</h2>
+
+<h3>Description</h3>
+
+<p>Specify parameters for a selected linking method to be used in
+<code>sora_request</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_linking(method, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="method">method</code></td>
+<td>
+<p>Linking method to be used. You can look
+up possible methods in the data picker (see <code>sora_datapicker</code>).</p>
+</td></tr>
+<tr><td><code id="...">...</code></td>
+<td>
+<p>Further arguments passed to the linking method. See
+<code>sora_datapicker</code> for a list of available arguments.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>An object of class <code>sora_linking</code>.
+</p>
+
+
+<h3>Further arguments</h3>
+
+<p>The following is a basic list of possible
+arguments that can be passed to the respective linking methods. Do
+note that this list is only updated with every release. In other words,
+some of the arguments might not be up-to-date and others might be
+missing. Use <code>sora_arguments</code> or visit the data picker
+(see <code>sora_datapicker</code>) for more accurate descriptions of
+possible arguments.
+</p>
+
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema                    </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema                    </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> min;max;mean;sum;mode
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> mode;histogram
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema                    </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode 
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode 
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;sum;mode           
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> mode;histogram                  
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode 
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode                                                 
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode                                                 
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;sum;mode                                                           
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> mode;histogram                                                                  
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode                                                 
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode 
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode 
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;sum;mode           
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> mode;histogram                  
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>aggregate_attribute</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>output</code>         </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> min;max;mean;median;sd;sum;mode 
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>area_polygons</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>area_polygons</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>area_polygons</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>area_polygons</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>count_objects</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>length_lines</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> area_schema
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>length_lines</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> circle                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>radius</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>length_lines</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> isochrone                                                                       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car                                        </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> time;distance                                                                   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>interval</code>       </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 45, 1, 10000 </td><td style="text-align: left;"> for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>length_lines</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Range</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>selection_area</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;">  </td><td style="text-align: left;"> square                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>length</code>         </td><td style="text-align: left;"> numeric   </td><td style="text-align: left;"> no </td><td style="text-align: left;"> 1, 20000 </td><td style="text-align: left;"> In Meters; Range from 1 to 20000
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>lookup</code></dt><dd><p>No parameters defined.</p>
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>lookup</code></dt><dd><p>No parameters defined.</p>
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>lookup</code></dt><dd><p>No parameters defined.</p>
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>lookup</code></dt><dd><p>No parameters defined.</p>
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>nearest_poi</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> fastest_route                           </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>nearest_poi</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>routing_type</code>   </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> shortest_route                          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+ <code>transport_mode</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> foot-walking;cycling-regular;driving-car
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+</p>
+<dl>
+<dt><code>nearest_poi</code></dt><dd>
+<table>
+<tr>
+ <td style="text-align: left;">
+ <strong>Name</strong> </td><td style="text-align: left;"> <strong>Data type</strong> </td><td style="text-align: left;"> <strong>Optional?</strong> </td><td style="text-align: left;"> <strong>Details</strong> </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+  <code>routing_type</code> </td><td style="text-align: left;"> character </td><td style="text-align: left;"> no </td><td style="text-align: left;"> euclidean_distance
+</td>
+</tr>
+
+</table>
+
+</dd></dl>
+<p><br />
+
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'># You need to always provide at least a linking method
+sora_linking("lookup")
+
+# In most cases, a linking method requires additional parameters
+sora_linking("count_object", selection_area = "square", length = 1000)
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>

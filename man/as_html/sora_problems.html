@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head><title>R: Linking problems</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_problems {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Linking problems</h2>
+
+<h3>Description</h3>
+
+<p>Sometimes linking jobs do not fail but cannot compute linking results
+for each row of the input data. In these cases, <code>sora_results</code>
+informs you about which rows are erroneous. To see <em>why</em> they failed
+you can use <code>sora_problems</code>. It returns a dataframe containing the
+problematic rows and the error message they produced in the SoRa API.
+</p>
+<p>Given a results dataframe <code>out</code>, you can remove these cases from
+the dataset by typing:
+</p>
+<pre>out[!is.na(out$count), ]</pre>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_problems(out)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="out">out</code></td>
+<td>
+<p>A dataframe of class <code>sora_results</code> that produced
+row-level error messages.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A dataframe containing those IDs that produced row-level error
+messages and a column <code>message</code> that contains their error messages.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+# Create a problematic dataset
+sora_data &lt;- sora_custom(ber_income, crs = 3035)
+sora_data$`coordinate-items`$x[4] &lt;- NA
+
+# Construct and send a request
+spat_data &lt;- sora_spatial("ioer-monitor-s02rg-2023-1000m")
+linking &lt;- sora_linking(
+  method = "aggregate_attribute",
+  selection_area = "square",
+  length = 2500,
+  output = c("mean", "median", "sd")
+)
+
+out &lt;- sora_request(
+  sora_data,
+  link_to = spat_data,
+  method = linking,
+  wait = TRUE
+)
+
+# Check for errors
+problems(out)
+
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>

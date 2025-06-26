@@ -1,0 +1,95 @@
+<!DOCTYPE html><html><head><title>R: Provenance</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_provenance {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Provenance</h2>
+
+<h3>Description</h3>
+
+<p>Configure if and how a provenance record for a linking job
+should be generated. This function is mainly used to be used as an
+argument to <code>sora_request</code>. You can configure the visibility
+of the provenance record. When providing custom coordinates, you can also
+provide the dataset's metadata if applicable.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_provenance(
+  visible = FALSE,
+  name = NULL,
+  pid = NULL,
+  url = NULL,
+  description = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="visible">visible</code></td>
+<td>
+<p>Whether to generate provenance record or not. If
+<code>TRUE</code> produces a provenance record according to the input to this
+function. Defaults to <code>FALSE</code>.</p>
+</td></tr>
+<tr><td><code id="name">name</code>, <code id="pid">pid</code>, <code id="url">url</code></td>
+<td>
+<p>When using a custom dataset using
+<code>sora_custom</code>, these arguments specify the name, ID, description,
+and URL of the dataset. For optimal reproducibility, make sure to provide
+accurate information to these arguments.</p>
+</td></tr>
+<tr><td><code id="description">description</code></td>
+<td>
+<p>A character string describing the subsample analyzed
+in the linking job. For optimal reproducibility, make sure to provide
+accurate information to these arguments.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>An object of class <code>sora_provenance</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'># The default, `FALSE`, does not produce a record
+sora_provenance()
+
+# Set to `TRUE` to produce a reproducible report for your linking job
+sora_provenance(TRUE)
+
+# When providing custom data, you can also use `sora_provenance()`
+# to provide necessary information to create a record
+data &lt;- sora_custom(ber_income, crs = 3035)
+sora_provenance(
+  visible = TRUE,
+  name = "Household income, Berlin",
+  url = "https://sora-service.org/"
+)
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>

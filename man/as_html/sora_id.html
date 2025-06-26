@@ -1,0 +1,133 @@
+<!DOCTYPE html><html><head><title>R: Split and assemble IDs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_id {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Split and assemble IDs</h2>
+
+<h3>Description</h3>
+
+<p>Helper functions to handle ID columns in the SoRa input/output.
+</p>
+
+<ul>
+<li><p><code>sora_assemble_id</code>: Combines multiple columns to a single ID
+column.
+</p>
+</li>
+<li><p><code>sora_split_id</code>: Splits an ID column to multiple separate
+columns.
+</p>
+</li></ul>
+
+<p>These functions are particularly handy (and were designed) to easily handle
+the IDs of SOEP datasets. Use <code>sora_assemble_id</code> to generate ad-hoc
+IDs from multiple dataset columns.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_assemble_id(.data, id_col = NULL, out_col = NULL, collapse = "_")
+
+sora_split_id(.data, id_col = "id", out_col = NULL, sep = "_")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id=".data">.data</code></td>
+<td>
+<p>A dataframe. The dataframe should contain the columns
+specified in <code>id_col</code>.</p>
+</td></tr>
+<tr><td><code id="id_col">id_col</code></td>
+<td>
+<p>A character vector of columns in which the
+necessary ID info is stored in.
+</p>
+
+<ul>
+<li><p>For <code>sora_assemble_id</code>, the columns from which to assemble
+the ID. Defaults to <code>NULL</code>, or all columns.
+</p>
+</li>
+<li><p>For <code>sora_split_id</code>, a single column in which the ID strings
+are stored. Defaults to <code>id</code>.
+</p>
+</li></ul>
+</td></tr>
+<tr><td><code id="out_col">out_col</code></td>
+<td>
+<p>A character vector of column names that should be generated.
+</p>
+
+<ul>
+<li><p>For <code>sora_assemble_id</code>, a single column. Defaults to <code>id</code>.
+</p>
+</li>
+<li><p>For <code>sora_split_id</code>, a character vector with the same length
+as there are ID components in <code>id_col</code>. Defaults to <code>NULL</code>,
+or <code>"id_*"</code> where <code>*</code> is the component number.
+</p>
+</li></ul>
+</td></tr>
+<tr><td><code id="collapse">collapse</code>, <code id="sep">sep</code></td>
+<td>
+<p>A character string by which to combine or split the ID
+components. Defaults to <code>"_"</code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p><code>sora_split_id</code> can generate <code>NA</code> values when single ID strings
+lack components that are present in other IDs. For example
+<code>c("id_a", "id")</code> would result in
+<code>data.frame(id_1 = c("id", "id"), id_2 = c("a", NA))</code>. Similarly,
+<code>sora_assemble_id</code> skips <code>NA</code> values, i.e., <code>c(id, NA, "a")</code>
+becomes <code>"id_a"</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A dataframe with added columns. <code>sora_assemble_id</code> adds a
+single column with the assembled ID strings, <code>sora_split_id</code> adds a
+number of columns equal to the number of ID components in <code>id_col</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>ids &lt;- tibble::tibble(id_1 = "id", id_2 = c("a", "b", NA), value = c(1, 2, 3))
+ids
+
+assembled &lt;- sora_assemble_id(ids, id_col = c("id_1", "id_2"))
+assembled
+
+split &lt;- sora_split_id(assembled)
+split
+
+identical(ids, split)
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>

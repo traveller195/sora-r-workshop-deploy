@@ -1,0 +1,112 @@
+<!DOCTYPE html><html><head><title>R: Is SoRa available?</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_available {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Is SoRa available?</h2>
+
+<h3>Description</h3>
+
+<p>Checks whether all of the required SoRa components are up and
+working and whether your API key is authorized. <code>sora_available</code>
+always returns <code>TRUE</code> or <code>FALSE</code>. <code>sora_services</code> returns
+a list of available and unavailable services. <code>sora_key_status</code> returns
+a list containing details on the status of the API key.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_available(services = NULL, api_key = NULL)
+
+sora_services(api_key = NULL)
+
+sora_key_status(api_key = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="services">services</code></td>
+<td>
+<p>If provided, checks if the specified services are
+available. If <code>NULL</code> (default), checks if any service is available.</p>
+</td></tr>
+<tr><td><code id="api_key">api_key</code></td>
+<td>
+<p>A valid SoRa API key. Required to communicate with the SoRa
+API. You can request a key by filling out
+<a href="https://sora.gesis.org/unofficial/sora-user-mod/users/request-api-key">this form</a>
+on the SoRa website.
+</p>
+<p>If <code>NULL</code>, reads a key from the <code>SORA_API_KEY</code>
+environment variable.
+</p>
+<p>If &quot;ask&quot; (and the session is interactive), opens a masked prompt where you
+can enter your key. The entered key is persistently stored in an environment
+variable and can be used across sessions.
+</p>
+<p>Please note that you are advised not to enter your key directly using this
+argument. If you do, please make sure that you do not publish any code files
+containing the key in plain text. Failure to do so can compromise your
+access to the SoRa API.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+
+<ul>
+<li><p><code>sora_available</code> returns <code>TRUE</code> or <code>FALSE</code>
+</p>
+</li>
+<li><p><code>sora_services</code> returns a named list of class
+<code>sora_services</code> containing information about available and unavailable
+services.
+</p>
+</li>
+<li><p><code>sora_key_status</code> returns a named list of class
+<code>sora_key_status.</code>
+</p>
+</li></ul>
+
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+# Checks whether the SoRa API can be accessed
+sora_available()
+
+# See what service providers are available
+sora_services()
+
+# Get details about a provided API key
+sora_key_status()
+
+# These functions can be used to create basic control flows
+try(stopifnot(sora_available()))
+try(stopifnot("IOER" %in% sora_services()$available))
+try(stopifnot("ALLOW" %in% sora_key_status()$decision))
+
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>

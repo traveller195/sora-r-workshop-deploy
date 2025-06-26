@@ -1,0 +1,113 @@
+<!DOCTYPE html><html><head><title>R: Waiter</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_wait {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Waiter</h2>
+
+<h3>Description</h3>
+
+<p>Helper function that takes a job ID and waits until the linking job behind
+it has finished, then automatically fetches the results. This function is
+used for the <code>wait</code> argument in <code>sora_request</code>. Starting a
+waiter can be particularly useful in continuous workflows where the
+next steps depend on the availability of the linking results.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_wait(job_id, verbose = NULL, api_key = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="job_id">job_id</code></td>
+<td>
+<p>A job ID as returned by <code>sora_request</code>.</p>
+</td></tr>
+<tr><td><code id="verbose">verbose</code></td>
+<td>
+<p>A logical, character string or <code>NULL</code> that specifies if
+and how to produce messages. If <code>FALSE</code>, suppresses all informative
+messages. If a path is provided, stores all messages in the specified file.
+If <code>NULL</code>, verbosity depends on <code>getOption("sora_verbose")</code>. Use
+the latter to set verbosity across the entire session, e.g. to suppress
+messages from all package functions. Defaults to <code>NULL</code> and
+<code>getOption("sora_verbose")</code> defaults to <code>TRUE</code>, i.e., display
+messages where reasonable.</p>
+</td></tr>
+<tr><td><code id="api_key">api_key</code></td>
+<td>
+<p>A valid SoRa API key. Required to communicate with the SoRa
+API. You can request a key by filling out
+<a href="https://sora.gesis.org/unofficial/sora-user-mod/users/request-api-key">this form</a>
+on the SoRa website.
+</p>
+<p>If <code>NULL</code>, reads a key from the <code>SORA_API_KEY</code>
+environment variable.
+</p>
+<p>If &quot;ask&quot; (and the session is interactive), opens a masked prompt where you
+can enter your key. The entered key is persistently stored in an environment
+variable and can be used across sessions.
+</p>
+<p>Please note that you are advised not to enter your key directly using this
+argument. If you do, please make sure that you do not publish any code files
+containing the key in plain text. Failure to do so can compromise your
+access to the SoRa API.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>By default, <code>sora_wait</code> waits for one second before polling the
+job status again. You can change the option <code>sora_wait_delay</code> to
+poll more or less frequently than that.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The same as <code>sora_results</code>, a dataframe containing
+the case IDs and all requested output statistics.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+job &lt;- sora_request(
+  sora_custom(ber_income, crs = 3035),
+  link_to = sora_spatial("ioer-monitor-s02rg-2023-1000m"),
+  method = sora_linking(
+    method = "aggregate_attribute",
+    selection_area = "square",
+    length = 2500,
+    output = c("mean", "median", "sd")
+  )
+)
+
+sora_wait(job)
+
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>

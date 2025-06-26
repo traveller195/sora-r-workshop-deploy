@@ -1,0 +1,129 @@
+<!DOCTYPE html><html><head><title>R: SoRa datasets</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_custom {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>SoRa datasets</h2>
+
+<h3>Description</h3>
+
+<p>Specify the data that you wish to link to the spatial context.
+Generally, you have three ways to specify data to the SoRa service:
+</p>
+
+<ul>
+<li><p>Provide your own data using <code>sora_custom()</code>.
+</p>
+</li>
+<li><p>Specify a dataset provided by SoRa using <code>sora_provided()</code>.
+Note that, in the public API, you can only access structural data of these
+datasets. To work with the real data, you need to be inside a secure room.
+</p>
+</li>
+<li><p>Provide regional keys to link areal units to their spatial
+context, e.g., zip code areas or municipalities, using <code>sora_admin()</code>.
+</p>
+</li></ul>
+
+<p>These objects can be used to feed linking jobs using
+<code>sora_request</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_custom(.data, crs = NULL)
+
+sora_provided(.data, survey)
+
+sora_admin(.data, schema)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id=".data">.data</code></td>
+<td>
+<p>Coordinates or identifier to coordinates, depending on the
+function.
+</p>
+
+<dl>
+<dt><code>sora_custom()</code></dt><dd><p>A plain dataframe containing three columns
+<code>id</code>, <code>x</code>, and <code>y</code> or an sf dataframe containing point
+geometries. If an sf dataframe is provided, the geometry column is
+converted to coordinates and the CRS is extracted automatically. If the
+columns <code>id</code>, <code>x</code>, and <code>y</code> cannot be found in the data, the
+first three columns are selected instead.</p>
+</dd>
+<dt><code>sora_provided()</code></dt><dd><p>A character vector of IDs that distinctly
+identify pairs of coordinates in the survey dataset provided in the
+<code>survey</code> argument.</p>
+</dd>
+<dt><code>sora_admin()</code></dt><dd><p>A dataframe containing two columns: one column
+containing the respondent/case ID (<code>case_id</code>) and one column
+containing the area identifier (<code>area_id</code>). An area identifier could,
+for example, be a municipality key (AGS) or zip code. Note that these
+columns can either be provided by name (<code>case_id</code> and <code>area_id</code>)
+or by position in the dataframe (positions 1 and 2).</p>
+</dd>
+</dl>
+</td></tr>
+<tr><td><code id="crs">crs</code></td>
+<td>
+<p>EPSG code of the coordinate reference system (CRS) of your data.
+Can be one of the following: 3035, 3857, 4326, 4647, 25832, 25833. If not
+provided and <code>.data</code> is of class <code>sf</code>, the EPSG code is extracted
+automatically.</p>
+</td></tr>
+<tr><td><code id="survey">survey</code></td>
+<td>
+<p>ID of a survey. You can look up possible values in the data
+picker (see <code>sora_datapicker</code> or its web version).</p>
+</td></tr>
+<tr><td><code id="schema">schema</code></td>
+<td>
+<p>Identifier of an administrative area schema. You can look
+up possible values in the data picker (see <code>sora_datapicker</code>).
+Example values include <code>"AGS2019"</code> and <code>"PLZ2024"</code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>List objects of classes <code>sora_custom</code>, <code>sora_provided</code>,
+or <code>sora_admin</code>, which can be used in <code>sora_request</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>sora_custom(ber_income, crs = 3035)
+sora_provided(c("0001", "0002", "0003"), survey = "soep.core.v39")
+
+admin &lt;- data.frame(
+  case_id = 1:3,
+  area_id = c("05 3 15 000", "05 3 15 000", "05 3 15 000")
+)
+sora_admin(admin, schema = "AGS")
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>

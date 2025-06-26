@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><title>R: Geospatial dataset</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_spatial {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Geospatial dataset</h2>
+
+<h3>Description</h3>
+
+<p>Specify the the geospatial dataset to be used in the
+<code>link_to</code> argument of <code>sora_request</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_spatial(id = NULL, .data = NULL, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="id">id</code></td>
+<td>
+<p>An ID of a spatial dataset provided by SoRa. See
+<code>sora_datapicker</code> or its web equivalent to see which
+IDs are available. If you want to provide your own spatial data, see the
+<code>.data</code> argument.</p>
+</td></tr>
+<tr><td><code id=".data">.data</code></td>
+<td>
+<p>A plain dataframe containing two columns <code>x</code> and <code>y</code>
+or an sf dataframe containing any geometry type. Use this argument if you
+intend to provide custom spatial data. If you want to use spatial data
+provided by the SoRa service, see the <code>id</code> argument.</p>
+</td></tr>
+<tr><td><code id="...">...</code></td>
+<td>
+<p>Further arguments passed to the API. See
+<code>sora_datapicker</code> for a list of available arguments.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>An object of class <code>sora_spatial</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'># When providing an ID you tell SoRa to select a pre-made dataset
+# from the service provider
+sora_spatial("ioer-monitor-s02rg-2023-1000m")
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>

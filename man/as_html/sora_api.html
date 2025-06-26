@@ -1,0 +1,100 @@
+<!DOCTYPE html><html><head><title>R: Get and set SoRa API</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sora_api {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Get and set SoRa API</h2>
+
+<h3>Description</h3>
+
+<p>Set a non-default URL to communicate with the SoRa API. This is necessary
+when working from a secure room or when connecting to a different SoRa
+service (e.g., from a different country). By default, the <code>sora</code>
+package sends requests to the default public API, which is not
+available in secure rooms.
+</p>
+<p>If you are working inside a secure room, make sure to ask the staff for
+the SoRa URL. You can then set it using <code>sora_set_api()</code>. To retrieve the
+currently set API, use <code>sora_api()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sora_api()
+
+sora_set_api(url = NULL, verbose = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="url">url</code></td>
+<td>
+<p>A valid URL to a SoRa API. If <code>NULL</code>, sets the URL to
+the default public API of the SoRa service. Defaults to <code>NULL</code>.</p>
+</td></tr>
+<tr><td><code id="verbose">verbose</code></td>
+<td>
+<p>A logical, character string or <code>NULL</code> that specifies if
+and how to produce messages. If <code>FALSE</code>, suppresses all informative
+messages. If a path is provided, stores all messages in the specified file.
+If <code>NULL</code>, verbosity depends on <code>getOption("sora_verbose")</code>. Use
+the latter to set verbosity across the entire session, e.g. to suppress
+messages from all package functions. Defaults to <code>NULL</code> and
+<code>getOption("sora_verbose")</code> defaults to <code>TRUE</code>, i.e., display
+messages where reasonable.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p><code>sora_set_api</code> is only able to set an API URL for the current session.
+It is reset upon starting a new session. To set a persistent path,
+set the environment variable manually inside your system's environment
+variable storage or use an <code>.Renviron</code> file.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Both functions return the currently (or newly) set SoRa API,
+but <code>sora_set_api</code> returns it invisibly.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'># Get the current API
+sora_api()
+
+# Set a new API, e.g., inside an air-gapped network
+sora_set_api("ftp://secure-room-data/")
+sora_set_api("https://10.1.1.1/")
+
+# Get the new API
+sora_api()
+
+# Reset to the public API
+sora_set_api()
+</code></pre>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>
