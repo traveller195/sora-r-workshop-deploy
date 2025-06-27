@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><title>R: Structural dataset for Hamburg, Germany</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>hamburg {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Structural dataset for Hamburg, Germany</h2>
+
+<h3>Format</h3>
+
+<p>A dataframe with 12,618 rows and 4 columns:
+crs = 4647
+</p>
+
+<dl>
+<dt><code>id</code></dt><dd><p>Character vector containing fake IDs demonstrating what real
+survey IDs could look like</p>
+</dd>
+<dt><code>syear</code></dt><dd><p>Year of the survey for the specific household.</p>
+</dd>
+<dt><code>x</code></dt><dd><p>x coordinate</p>
+</dd>
+<dt><code>y</code></dt><dd><p>y coordinate</p>
+</dd>
+</dl>
+
+
+
+<h3>Source</h3>
+
+<p>Data is based on the SOEP data v38 and contains data for the years 2000 until 2021. Coordinates for the households in SOEP starting in 2000.
+That dataset 'hamburg' is a subset of the 'structural dataset' which can be requested by SOEP.
+This 'structural dataset' concerns synthetic coordinates for the SOEP househols,
+which are based on real coordinates for houses. That dataset for the coordinates is provided by 'BKG'.
+</p>
+<p>© Sozio-oekonomisches Panel (SOEP), Version 38, Daten der Jahre 1984-2021 (SOEP-Core v38, EU-Edition). 2023. DOI: 10.5684/soep.core.v38eu
+</p>
+<p>© BKG Federal Agency for Catography and Geodesy, 2021
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>
