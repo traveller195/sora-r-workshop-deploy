@@ -1,1 +1,1 @@
-.libPaths(c("~/Rlibs", .libPaths()))
+.libPaths(c("/srv/Rlibs", .libPaths()))
