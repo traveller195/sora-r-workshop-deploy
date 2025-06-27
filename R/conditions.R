@@ -279,6 +279,7 @@ main_call_rgx <- function() {
     exports <- getNamespaceExports("sora")
   } else {
     exports <- ls(environment())
+    exports <- exports[grep("sora", exports)]
   }
   rgx <- paste(exports, collapse = "|")
   sprintf("^(%s)\\(", rgx)
