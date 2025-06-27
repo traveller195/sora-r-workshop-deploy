@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><title>R: Structural dataset for Berlin, Germany</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>census_2022_berlin {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Census 2022 dataset for Berlin, Germany</h2>
+
+<h3>Format</h3>
+
+<p>A dataframe with 3,824 rows and 5 columns:
+crs = 3035
+</p>
+
+<dl>
+<dt><code>id</code></dt><dd><p>CellCode from INSPIRE GeoGitter Germany (500 meter grid)</p>
+</dd>
+<dt><code>pop_sum</code></dt><dd><p>Sum of population of census 2022.</p>
+</dd>
+<dt><code>pop_diff_sum</code></dt><dd><p>Total difference of population between census 2011 and 2022.</p>
+</dd>
+<dt><code>x</code></dt><dd><p>x coordinate of centroid of grid cell</p>
+</dd>
+<dt><code>y</code></dt><dd><p>y coordinate of centroid of grid cell</p>
+</dd>
+</dl>
+
+
+
+<h3>Source</h3>
+
+<p>The dataset is based on Census data of Germany. The grid data is from BKG.
+</p>
+<p>© Census 2022: https://www.zensus2022.de/
+</p>
+<p>© Census 2011: https://www.zensus2011.de/
+</p>
+<p>© BKG Federal Agency for Catography and Geodesy, 2025
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>sora</em> version 0.5.0.9000 ]</div></main>
+
+</div>
+</body></html>
