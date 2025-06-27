@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Ensure packages list is up to date
+apt-get update
+
+# Install system dependency for 'units' and 'sf' R packages
+apt-get install -y libudunits2-dev
