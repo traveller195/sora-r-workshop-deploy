@@ -23,8 +23,7 @@ sora_dp_get_id(
   data_dp = NULL,
   indicator = NULL,
   dataset_id = "dataset_id",
-  content_dp = "spatial",
-  arg = NULL
+  content_dp = "spatial"
 )
 }
 \arguments{
@@ -64,8 +63,6 @@ spatial linking. Defaults to \code{"IOER"}.}
 \item{indicator}{is the 'title' output in the 'datapicker'}
 
 \item{dataset_id}{argument for the 'dataset_id' can be depends of the dataprovidor.}
-
-\item{arg}{selected arg}
 }
 \value{
 \itemize{

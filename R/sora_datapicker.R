@@ -293,7 +293,7 @@ sora_dp_overview <- function(data_dp = NULL,
                                          sort_by = sort_by,
                                          arg = arg_1)
       }
-      if (!is.element(arg_1, names(overview_dp))){
+      if (!is.element(arg_1, names(overview_dp))) {
         overview_dp <- as.data.frame(cbind(rownames(overview_dp), overview_dp))
         names(overview_dp)[1] <- arg_1
         row.names(overview_dp) <- NULL
@@ -303,7 +303,7 @@ sora_dp_overview <- function(data_dp = NULL,
       sora_abort(sprintf("argument: `%s` does not exist", used_argument[1]))
     }
   }
-  if (any(duplicated(names(overview_dp)))){
+  if (any(duplicated(names(overview_dp)))) {
     overview_dp <- overview_dp[,unique(names(overview_dp))]
   }
   as_df(overview_dp)
@@ -324,7 +324,7 @@ dp_sort_by_raster <- function(overview_dp,
   
   colnames_dp <- names(overview_dp)
   values_raster <- grep(sort_by, names(overview_dp))
-  if (length(values_raster) > 0){
+  if (length(values_raster) > 0) {
     overview_dp_part_i <- colnames_dp[(which(is.element(1:length(colnames_dp), values_raster) == TRUE))]
     overview_dp_part_ii <- colnames_dp[(which(is.element(1:length(colnames_dp), values_raster) == FALSE))]
     info_raster_sort <- as.data.frame(cbind(1:length(overview_dp_part_i), nchar(overview_dp_part_i)))
@@ -354,52 +354,61 @@ dp_sort_by_raster <- function(overview_dp,
 sora_dp_get_id <- function(data_dp = NULL,
                            indicator = NULL,
                            dataset_id = "dataset_id",
-                           content_dp = "spatial",
-                           arg = NULL){
+                           content_dp = "spatial") {
   
   if (is.null(data_dp)){
     data_dp <- sora_datapicker(content = content_dp)
   }
   colnames_dp <- names(data_dp)
   data_dp <- as.data.frame(data_dp)
-  values_title <- unique(data_dp$title)
+  values_title <- tolower(unique(data_dp$title))
+  indicator <- tolower(indicator)
   
-  if (is.element(dataset_id, colnames_dp) && is.element(indicator, values_title)){
-    overview_dp <- as.data.frame.array(table(data_dp[, dataset_id], data_dp[, "title"]))
-    overview_dp <- cbind(row.names(overview_dp), overview_dp)
-    row.names(overview_dp) <- NULL
-    names(overview_dp)[1] <- dataset_id
-    if (!is.null(indicator)){
-      relevant_data <- overview_dp[, indicator]
-      if (!length(indicator) == 1 && !is.null(indicator)){
-        relevant_data <- rowSums(overview_dp[, names(relevant_data)])
-      }
-      relevant_data <- which(relevant_data > 0)
-      if (length(relevant_data) != 0){
-        overview_id_datasets <- overview_dp[relevant_data, dataset_id]
-      }
-    } else {
-      overview_id_datasets <- overview_dp[, dataset_id]
-    }
-    relevant_data <- which(is.element(data_dp[, dataset_id], overview_id_datasets))
-    
-    if (!is.null(arg)){
-      if(!is.element(arg, colnames_dp)){
-        sora_abort(sprintf("argument: `%s` does not exist", arg))
-      }
-    }
-    overview_dp <- data_dp[relevant_data, c("title", "time_frame", "spatial_resolution", arg, dataset_id)]
-    
-    ## check if one column is a duplicate
-    if (!is.null(arg)){
-      if (is.element(arg, names(overview_dp))){
-        overview_dp[, 4] <- NULL
-      }
-    }
-    as_df(overview_dp)
+  ## which indicator has the used pattern
+  if (indicator != "") {
+    use_indicator <- values_title[grep(indicator, values_title)]
   } else {
-    used_argument <- c(indicator, dataset_id)[which(!is.element(c(indicator, dataset_id), c(colnames_dp, values_title)))]
-    sora_abort(sprintf("argument: `%s` does not exist", used_argument))
+    use_indicator <- ""
   }
+  
+  ## use a loop over all possible indicators with that pattern
+  indicator_list <- list()
+  for (i in use_indicator) {
+    iteration <- which(use_indicator == i)
+    if (is.element(dataset_id, colnames_dp) && is.element(i, values_title)) {
+      list_indicators <- as.data.frame.array(table(data_dp[, dataset_id], data_dp[, "title"]))
+      list_indicators <- cbind(row.names(list_indicators), list_indicators)
+      row.names(list_indicators) <- NULL
+      names(list_indicators)[1] <- dataset_id
+      names(list_indicators) <- tolower(names(list_indicators))
+      if (!is.null(i)){
+        output <- list_indicators[, i]
+        if (!length(i) == 1 && !is.null(i)) {
+          output <- rowSums(list_indicators[, names(output)])
+        }
+        output <- which(output > 0)
+        if (length(output) != 0) {
+          list_id <- list_indicators[output, dataset_id]
+        }
+      } else {
+        list_id <- list_indicators[, dataset_id]
+      }
+      output <- which(is.element(data_dp[, dataset_id], list_id))
+      list_indicators <- data_dp[output, c("title", "time_frame", "spatial_resolution", dataset_id)]
+      indicator_list[[iteration]] <- list_indicators
+    } else {
+      used_argument <- c(i, dataset_id)[which(!is.element(c(i, dataset_id), c(colnames_dp, values_title)))]
+      sora_abort(sprintf("used input: `%s` does not exist", used_argument))
+    }
+  }
+  names(indicator_list) <- use_indicator
+  
+  for (i in use_indicator) {
+    if (i == use_indicator[1]) {
+      output <- indicator_list[[i]]
+    } else {
+      output <- rbind(output, indicator_list[[i]])
+    }
+  }
+  as_df(output)
 }
-
