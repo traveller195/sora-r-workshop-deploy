@@ -21,7 +21,7 @@ sora_dp_overview(
 
 sora_dp_get_id(
   data_dp = NULL,
-  indicator = NULL,
+  indicator,
   dataset_id = "dataset_id",
   content_dp = "spatial"
 )

@@ -269,40 +269,35 @@ sora_dp_overview <- function(data_dp = NULL,
   colnames_dp <- names(data_dp)
   data_dp <- as.data.frame(data_dp)
   
-  if (!is.null(arg_1) && !is.null(arg_2)){
-    if (arg_1 == arg_2){
-      arg_2 <- NULL
+  if (!is.null(arg_1) && !is.null(arg_2) && arg_1 == arg_2){
+    arg_2 <- NULL
     }
-  }
   
   # 1. case: only one value is selected
-  if (!is.null(arg_1) && is.null(arg_2)){
-    if (is.element(arg_1, colnames_dp)){
-      overview_dp <- as.data.frame(table(data_dp[, arg_1]))
-      names(overview_dp) <- c("title", "n")
-    } 
-  }
+  if (!is.null(arg_1) && is.null(arg_2) && is.element(arg_1, colnames_dp)){
+    overview_dp <- as.data.frame(table(data_dp[, arg_1]))
+    names(overview_dp) <- c("title", "n")
+    }
   
   # 2. case: two values are selected
-  if (!is.null(arg_1) && !is.null(arg_2)){
-    if (is.element(arg_1, colnames_dp) && is.element(arg_2, colnames_dp)){
-      overview_dp <- as.data.frame.array(table(data_dp[, arg_1], data_dp[, arg_2]))
-      overview_dp <- overview_dp[, sort(names(overview_dp))]
-      if (!is.null(sort_by)){
-        overview_dp <- dp_sort_by_raster(overview_dp = overview_dp,
-                                         sort_by = sort_by,
-                                         arg = arg_1)
-      }
-      if (!is.element(arg_1, names(overview_dp))) {
-        overview_dp <- as.data.frame(cbind(rownames(overview_dp), overview_dp))
-        names(overview_dp)[1] <- arg_1
-        row.names(overview_dp) <- NULL
-      }
-    } else {
-      used_argument <- c(arg_1, arg_2)[which(!is.element(c(arg_1, arg_2), colnames_dp))]
-      sora_abort(sprintf("argument: `%s` does not exist", used_argument[1]))
+  if (!is.null(arg_1) && !is.null(arg_2) && is.element(arg_1, colnames_dp) && is.element(arg_2, colnames_dp)){
+    overview_dp <- as.data.frame.array(table(data_dp[, arg_1], data_dp[, arg_2]))
+    overview_dp <- overview_dp[, sort(names(overview_dp))]
+    if (!is.null(sort_by)){
+      overview_dp <- dp_sort(overview_dp = overview_dp,
+                             sort_by = sort_by,
+                             arg = arg_1)
     }
+    if (!is.element(arg_1, names(overview_dp))) {
+      overview_dp <- as.data.frame(cbind(rownames(overview_dp), overview_dp))
+      names(overview_dp)[1] <- arg_1
+      row.names(overview_dp) <- NULL
+    }
+  } else {
+    used_argument <- c(arg_1, arg_2)[which(!is.element(c(arg_1, arg_2), colnames_dp))]
+    sora_abort(sprintf("argument: `%s` does not exist", used_argument[1]))
   }
+  
   if (any(duplicated(names(overview_dp)))) {
     overview_dp <- overview_dp[,unique(names(overview_dp))]
   }
@@ -318,25 +313,25 @@ sora_dp_overview <- function(data_dp = NULL,
 #' @param arg argument given by the user
 #' @rdname sora_datapicker 
 #' @noRd
-dp_sort_by_raster <- function(overview_dp,
-                              sort_by,
-                              arg) {
+dp_sort <- function(overview_dp,
+                    sort_by,
+                    arg) {
   
   colnames_dp <- names(overview_dp)
-  values_raster <- grep(sort_by, names(overview_dp))
+  values_raster <- colnames_dp[grep(sort_by, names(overview_dp))]
   if (length(values_raster) > 0) {
-    overview_dp_part_i <- colnames_dp[(which(is.element(1:length(colnames_dp), values_raster) == TRUE))]
-    overview_dp_part_ii <- colnames_dp[(which(is.element(1:length(colnames_dp), values_raster) == FALSE))]
-    info_raster_sort <- as.data.frame(cbind(1:length(overview_dp_part_i), nchar(overview_dp_part_i)))
-    names(info_raster_sort) <- c("postion", "length_character")
-    info_raster_sort <- info_raster_sort[order(info_raster_sort$length_character),]
-    order_overview <- c(overview_dp_part_i[info_raster_sort$postion], overview_dp_part_ii)
-    overview_dp <- overview_dp[, order_overview]
-    overview_dp <- as.data.frame(cbind(rownames(overview_dp), overview_dp))
-    names(overview_dp)[1] <- arg
-    row.names(overview_dp) <- NULL
+    i_dp_part_i <- colnames_dp[(which(is.element(values_raster, values_raster)))]
+    i_dp_part_ii <- colnames_dp[(which(!is.element(values_raster, values_raster)))]
+    raster_sort <- as.data.frame(cbind(1:length(i_dp_part_i), nchar(i_dp_part_i)))
+    names(raster_sort) <- c("postion", "n_character")
+    raster_sort <- raster_sort[order(raster_sort$n_character),]
+    order_overview <- c(i_dp_part_i[raster_sort$postion], i_dp_part_ii)
+    output <- overview_dp[, order_overview]
+    output <- as.data.frame(cbind(rownames(output), output))
+    names(output)[1] <- arg
+    row.names(output) <- NULL
   }
-  overview_dp
+  output
 }
 
 
@@ -348,65 +343,51 @@ dp_sort_by_raster <- function(overview_dp,
 #' @param indicator is the 'title' output in the 'datapicker'
 #' @param dataset_id argument for the 'dataset_id' can be depends of the dataprovidor.
 #' @param content_dp selected table like "spatial"
-#' @param arg selected arg
 #' @rdname sora_datapicker
 #' @export
 sora_dp_get_id <- function(data_dp = NULL,
-                           indicator = NULL,
+                           indicator,
                            dataset_id = "dataset_id",
                            content_dp = "spatial") {
   
-  if (is.null(data_dp)){
+  if (is.null(data_dp)) {
     data_dp <- sora_datapicker(content = content_dp)
   }
-  colnames_dp <- names(data_dp)
-  data_dp <- as.data.frame(data_dp)
-  values_title <- tolower(unique(data_dp$title))
+  dp <- as.data.frame(data_dp)
+  values_title <- tolower(unique(dp$title))
   indicator <- tolower(indicator)
-  
+    
   ## which indicator has the used pattern
-  if (indicator != "") {
-    use_indicator <- values_title[grep(indicator, values_title)]
-  } else {
-    use_indicator <- ""
-  }
-  
-  ## use a loop over all possible indicators with that pattern
+  use_indicator <- values_title[grep(indicator, values_title)]
   indicator_list <- list()
+  check_colnames <- is.element(dataset_id, names(dp))
+  check_indicator <- is.element(use_indicator, values_title)
+  
+  if (!check_colnames) {
+    sora_abort(sprintf("used input for 'dataset_id': `%s` is not a valid value", dataset_id))
+  }
+  if (!isTRUE(unique(check_indicator)) | indicator == "") {
+    sora_abort(sprintf("used input for indicator': `%s` is not a valid value", indicator))
+  }
+   
+  indicators <- as.data.frame.array(table(dp[, dataset_id], dp[, "title"]))
+  indicators <- cbind(row.names(indicators), indicators)
+  row.names(indicators) <- NULL
+  names(indicators)[1] <- dataset_id
+  names(indicators) <- tolower(names(indicators))
+    
   for (i in use_indicator) {
     iteration <- which(use_indicator == i)
-    if (is.element(dataset_id, colnames_dp) && is.element(i, values_title)) {
-      list_indicators <- as.data.frame.array(table(data_dp[, dataset_id], data_dp[, "title"]))
-      list_indicators <- cbind(row.names(list_indicators), list_indicators)
-      row.names(list_indicators) <- NULL
-      names(list_indicators)[1] <- dataset_id
-      names(list_indicators) <- tolower(names(list_indicators))
-      if (!is.null(i)){
-        output <- list_indicators[, i]
-        if (!length(i) == 1 && !is.null(i)) {
-          output <- rowSums(list_indicators[, names(output)])
-        }
-        output <- which(output > 0)
-        if (length(output) != 0) {
-          list_id <- list_indicators[output, dataset_id]
-        }
-      } else {
-        list_id <- list_indicators[, dataset_id]
-      }
-      output <- which(is.element(data_dp[, dataset_id], list_id))
-      list_indicators <- data_dp[output, c("title", "time_frame", "spatial_resolution", dataset_id)]
-      indicator_list[[iteration]] <- list_indicators
-    } else {
-      used_argument <- c(i, dataset_id)[which(!is.element(c(i, dataset_id), c(colnames_dp, values_title)))]
-      sora_abort(sprintf("used input: `%s` does not exist", used_argument))
-    }
-  }
+    output <- indicators[, i]
+    id <- indicators[output > 0, dataset_id]
+    output <- which(is.element(dp[, dataset_id], id))
+    indicator_list[[iteration]] <- dp[output, c("title", "time_frame", "spatial_resolution", dataset_id)]
+  } 
   names(indicator_list) <- use_indicator
-  
-  for (i in use_indicator) {
-    if (i == use_indicator[1]) {
-      output <- indicator_list[[i]]
-    } else {
+  output <- indicator_list[[use_indicator[1]]]
+  if (length(use_indicator) > 1) {
+    use_indicator <- use_indicator[2:length(use_indicator)]
+    for (i in use_indicator) {
       output <- rbind(output, indicator_list[[i]])
     }
   }
