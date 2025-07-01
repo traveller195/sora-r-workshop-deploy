@@ -318,18 +318,21 @@ dp_sort <- function(overview_dp,
                     arg) {
   
   colnames_dp <- names(overview_dp)
-  values_raster <- colnames_dp[grep(sort_by, names(overview_dp))]
-  if (length(values_raster) > 0) {
-    i_dp_part_i <- colnames_dp[(which(is.element(values_raster, values_raster)))]
-    i_dp_part_ii <- colnames_dp[(which(!is.element(values_raster, values_raster)))]
-    raster_sort <- as.data.frame(cbind(1:length(i_dp_part_i), nchar(i_dp_part_i)))
-    names(raster_sort) <- c("postion", "n_character")
-    raster_sort <- raster_sort[order(raster_sort$n_character),]
-    order_overview <- c(i_dp_part_i[raster_sort$postion], i_dp_part_ii)
+  sort_names <- colnames_dp[grep(sort_by, colnames_dp)]
+  if (length(sort_names) > 0) {
+    i_dp_part_i <- colnames_dp[(which(is.element(sort_names, sort_names)))]
+    i_dp_part_ii <- colnames_dp[(which(!is.element(sort_names, sort_names)))]
+    names_sorted <- as.data.frame(cbind(1:length(i_dp_part_i), nchar(i_dp_part_i)))
+    names(names_sorted) <- c("position", "n_character")
+    names_sorted <- names_sorted[order(names_sorted$n_character),]
+    order_overview <- c(i_dp_part_i[names_sorted$position], i_dp_part_ii)
     output <- overview_dp[, order_overview]
-    output <- as.data.frame(cbind(rownames(output), output))
+    append_columns <- which(!is.element(names(overview_dp), names(output)))
+    output <- as.data.frame(cbind(rownames(output), output, overview_dp[,append_columns]))
     names(output)[1] <- arg
     row.names(output) <- NULL
+  } else {
+    output <- overview_dp
   }
   output
 }
@@ -354,20 +357,20 @@ sora_dp_get_id <- function(data_dp = NULL,
     data_dp <- sora_datapicker(content = content_dp)
   }
   dp <- as.data.frame(data_dp)
-  values_title <- tolower(unique(dp$title))
+  available_indicator <- tolower(unique(dp$title))
   indicator <- tolower(indicator)
     
   ## which indicator has the used pattern
-  use_indicator <- values_title[grep(indicator, values_title)]
+  use_indicator <- available_indicator[grep(indicator, available_indicator)]
   indicator_list <- list()
   check_colnames <- is.element(dataset_id, names(dp))
-  check_indicator <- is.element(use_indicator, values_title)
+  check_indicator <- is.element(use_indicator, available_indicator)
   
   if (!check_colnames) {
     sora_abort(sprintf("used input for 'dataset_id': `%s` is not a valid value", dataset_id))
   }
   if (!isTRUE(unique(check_indicator)) | indicator == "") {
-    sora_abort(sprintf("used input for indicator': `%s` is not a valid value", indicator))
+    sora_abort(sprintf("used input for 'indicator': `%s` is not a valid value", indicator))
   }
    
   indicators <- as.data.frame.array(table(dp[, dataset_id], dp[, "title"]))
