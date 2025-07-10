@@ -12,14 +12,14 @@
 <!-- badges: end -->
 
 `{sora}` is the official R package of the SoRa Geolinking Service.
-Easily link georeferenced survey data with their spatial context.
+Easily link georeferenced survey data with its spatial context.
 Interactively select datasets, create and manage linking jobs, and
 retrieve results. Create persistent provenance records facilitating the
 reproducibility of social-spatial research.
 
 The package knows two modes, depending on where you are:
 
-- If you bring your own data or structural datasets, use the **public
+- If you bring your data or structural datasets, use the **public
   API**
 - If you work on sensitive survey data in secure rooms, use the
   **private API** (follow the instructions of the staff)
@@ -38,7 +38,7 @@ pak::pkg_install("git::https://git.gesis.org/soraplus/sora-r.git")
 SoRa does one thing: It links a survey dataset (or any other geocoded
 dataset) to a spatial dataset using a set of linking methods. The
 datasets can be either provided by you or by the SoRa infrastructure.
-SoRa can work both with publicly available data, and with sensitive
+SoRa can work both with publicly available data and with sensitive
 micro data inside secure rooms.
 
 The workflow is rather straightforward:
@@ -48,7 +48,7 @@ The workflow is rather straightforward:
 - Check if SoRa is up and running: `sora_available()`
 - Send a request: `sora_request()`
 - Wait until your request has been handled: `sora_wait()`
-- Fetch the resulits: `sora_results()`
+- Fetch the results: `sora_results()`
 
 ## Access to the API
 
@@ -56,16 +56,15 @@ Before you can use the SoRa API, make sure to request an API key under
 [this
 link](https://sora.gesis.org/unofficial/sora-user-mod/users/request-api-key).
 
-You will have to provde some personal information and, importantly,
+You will have to provide some personal information and, importantly,
 agree to the mandatory and optional agreements. Optional agreements are
-made with the service providers and are the requirement to use their
+made with the service providers and are a requirement to use their
 service. For example, if you do not agree to the user agreement of the
 IOER, then you will not be able to use their services within SoRa.
 
 Please ensure that you never publish your API key to the public in plain
-text. This also includes uploads of any kind, e.g., to GitHub. The
-package functions feature an `api_key` argument, but you are advised to
-never use it. Instead, we suggest to use one of the following options:
+text. This also includes uploads of any kind, such as those to GitHub. The
+package functions feature an `api_key` argument, but you are advised never to use it. Instead, we suggest using one of the following options:
 
 - Set an environment variable `SORA_API_KEY` in your `.Renviron` file
   (see
@@ -78,8 +77,8 @@ never use it. Instead, we suggest to use one of the following options:
 ## Inside a secure room
 
 One of the strengths of SoRa is that you can use it both publicly and
-inside the secure room of a research data center (RDC). The SoRa project
-maintains a number of secured connections to service providers that can
+inside the secure room of a research data centre (RDC). The SoRa project
+maintains several secure connections to service providers that can
 be used in the air-gapped networks of RDCs. Read the [vignette on secure
 rooms](http://soraplus.git.gesis.org/sora-r/#/vignettes/d-secure-rooms.md)
 to learn more about this.
@@ -103,10 +102,10 @@ head(ber_income)
 #> 6 ID_15074 3000-3500 € 4561600 3276700
 ```
 
-Before you actually send requests, make sure to [sign up for an API
+Before you send requests, make sure to [sign up for an API
 key](https://sora.gesis.org/unofficial/sora-user-mod/users/request-api-key).
-You will only be able to use data that you signed the necessary usage
-agreements for. To see whether the API is available and your key is
+You will only be able to use data for which you signed the necessary usage
+agreements. To see whether the API is available and your key is
 valid, you can run `sora_available()`. If it returns `TRUE`, you are
 good to go.
 
@@ -116,10 +115,10 @@ sora_available()
 ```
 
 SoRa accepts three types of survey datasets. You can either provide the
-IDs of dataset provided by SoRa, provide your own datasets, or use
+IDs of the dataset provided by SoRa, provide your datasets, or use
 identifiers of administrative areas in Germany (e.g., zip codes or
 municipality keys). For our dummy example, we use `sora_custom` to
-signal that we use our own data.
+signal that we use our data.
 
 ``` r
 survey_data <- sora_custom(ber_income, crs = 3035)
@@ -141,7 +140,7 @@ survey_data
 ```
 
 To send a linking request to the SoRa API, simply chuck your prepared
-dataset into `sora_request()` and specify spatial data you would like to
+dataset into `sora_request()` and specify the spatial data you would like to
 link it to. Here, we use an indicator on settlement area share in a
 region provided by the [IOER monitor](https://monitor.ioer.de/). You can
 check out all available datasets in the [data
@@ -157,19 +156,19 @@ linked <- sora_request(
   output = c("mean", "median", "sd"),
   wait = TRUE
 )
-#> → The provided coordinates have unique identifiers and are in valid format.
-#> → The requested sora-provided geospatial dataset is existing.
+#> → The provided coordinates have unique identifiers and are in a valid format.
+#> → The requested sora-provided geospatial dataset exists.
 #> → Chosen geospatial dataset: Percentage of settlement area to reference area
 #>   (2023, 1000m Raster) from IOER-Monitor (IOER)
 #> → Chosen linkage: Aggregate attribute within square on raster with numeric
 #>   field - Geocoded Dataset: Vector: Point | Geospatial Dataset: Raster -
 #>   numeric
-#> → The requested linkage is plausible and fits to the chosen geospatial dataset.
-#>   All provided parameter are valid including its values.
+#> → The requested linkage is plausible and fits the chosen geospatial dataset.
+#>   All provided parameters are valid, including their values.
 #> → All required permissions for accessing the data are available.
 #> → Total number of provided coordinates: 3000 (valid: 3000, having null values:
 #>   0).
-#> → Number of coordinates located within the bounding box of geospatial dataset:
+#> → Number of coordinates located within the bounding box of the geospatial dataset:
 #>   3000 (outside: 0).
 #> → All required external services are available.
 #> Waiting for results...
@@ -213,9 +212,9 @@ vignettes. You may be wondering:
 - How do I make requests that fit my use case? Read the introduction on
   how to make [SoRa
   requests](http://soraplus.git.gesis.org/sora-r/#/vignettes/b-request.md)
-- Can I provide my own spatial data? Read the vignette on [alternative
+- Can I provide my spatial data? Read the vignette on [alternative
   spatial data
   sources](http://soraplus.git.gesis.org/sora-r/#/vignettes/c-custom_data.md)
-- How do I use SoRa inside a research data center? Read the vignette on
+- How do I use SoRa inside a research data centre? Read the vignette on
   the integration of SoRa in [secure
   rooms](http://soraplus.git.gesis.org/sora-r/#/vignettes/d-secure-rooms.md)
