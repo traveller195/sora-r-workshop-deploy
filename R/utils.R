@@ -183,3 +183,37 @@ color <- function(x, color) {
 code <- function(x) {
   sprintf("`%s`", x)
 }
+
+
+#' Set quotes to a string.
+#' @param x A string.
+#' @returns A string.
+#' @noRd
+quote_arg <- function(x) {
+  paste0("'", x,"'")
+}
+
+
+#' Switch 'error' to 'warning' in the notification.
+#' @param res Response from the API.
+#' @param condition Logical TRUE or FALSE.
+#' @returns Modified notification level in response.
+#' @noRd
+error_to_warn <- function(res, condition = FALSE) {
+  if (condition) {
+    if (is.element("error", res$notification$level)) {
+      res$notification$level <- gsub("error", "warn", res$notification$level, fixed = TRUE)
+    }
+  }
+  res
+}
+
+
+#' Order the level in notification.
+#' @param res Response from the API.
+#' @returns The ordered notification level in response.
+#' @noRd
+order_notification <- function(res) {
+  res$notification <- res$notification[order(res$notification$level), ]
+  res
+}

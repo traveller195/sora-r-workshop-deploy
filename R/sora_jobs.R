@@ -12,6 +12,7 @@
 #'  \item{\code{sora_job_delete} removes a job from the SoRa service}
 #' }
 #' 
+#' @param status currently status for the requested linking.
 #' @param job_id A job ID as returned by \code{\link{sora_request}}.
 #' @inheritParams sora_request
 #' 
@@ -58,23 +59,35 @@
 #' 
 #' # Alternatively, remove the job
 #' sora_job_delete(job)
-sora_jobs <- function(api_key = NULL) {
+sora_jobs <- function(status = NULL, verbose = NULL, api_key = NULL) {
   res <- api_request("jobs", api_key = api_key)
-  notify_if_needed(res$notification)
-  jobs <- as_df(res$jobs)
-  jobs$created_at <- sora_datetime(jobs$created_at)
-  class(jobs) <- c("sora_jobs", class(jobs))
-  jobs
+  res <- error_to_warn(res, condition = TRUE)
+  res <- order_notification(res)
+  notify_if_needed(res$notification, verbose)
+  
+  if (length(res$jobs) != 0) {
+    if (!is.null(status) && is.element(status, unique(res$jobs$status))) {
+      res$jobs <- res$jobs[grep(status, res$jobs$status),]
+    }
+    jobs <- as_df(res$jobs)
+    jobs$created_at <- sora_datetime(jobs$created_at)
+    class(jobs) <- c("sora_jobs", class(jobs))
+    jobs
+  } else {
+    NULL
+  }
 }
 
 
 #' @rdname sora_jobs
 #' @export
-sora_job_status <- function(job_id, api_key = NULL) {
+sora_job_status <- function(job_id, verbose = NULL, api_key = NULL) {
   check_string(job_id)
   endpoint <- paste("jobs", job_id, "status", sep = "/")
   res <- api_request(endpoint, api_key = api_key)
-  notify_if_needed(res$notification)
+  res <- error_to_warn(res, condition = TRUE)
+  res <- order_notification(res)
+  notify_if_needed(res$notification, verbose)
   status <- res[c("job_id", "timestamp", "status", "message")]
   status$timestamp <- as.POSIXct(status$timestamp)
   class(status) <- "sora_status"
@@ -99,8 +112,10 @@ sora_job_delete <- function(job_id, verbose = NULL, api_key = NULL) {
   verbose <- peek_verbose(verbose)
   endpoint <- paste("jobs", job_id, sep = "/")
   res <- api_request(endpoint, method = "DELETE", api_key = api_key)
+  res <- error_to_warn(res, condition = TRUE)
+  res <- order_notification(res)
   report_if_needed(res, verbose)
-  notify_if_needed(res$notification)
+  notify_if_needed(res$notification, verbose)
   invisible()
 }
 
@@ -113,8 +128,10 @@ sora_results <- function(job_id, verbose = NULL, api_key = NULL) {
   verbose <- peek_verbose(verbose)
   endpoint <- paste("jobs", job_id, "result", sep = "/")
   res <- api_request(endpoint, api_key = api_key)
+  res <- error_to_warn(res, condition = TRUE)
+  res <- order_notification(res)
   report_if_needed(res$linking_report, verbose)
-  notify_if_needed(res$notification)
+  notify_if_needed(res$notification, verbose)
 
   out <- as_df(res$items)
   problems <- extract_problems(out)

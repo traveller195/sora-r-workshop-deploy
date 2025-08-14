@@ -129,6 +129,7 @@ sora_warn <- function(msg,
 #' @returns Nothing.
 #' @noRd
 info <- function(msg, .class = NULL) {
+
   cnd <- list(message = msg, call = NULL)
   class(cnd) <- c(.class, "message", "condition")
   message(cnd)
@@ -220,13 +221,28 @@ report_if_needed <- function(report, verbose = TRUE) {
 notify_if_needed <- function(notes, verbose = NULL) {
   verbose <- verbose %||% getOption("sora_notifications", TRUE)
   if (verbose && !is.null(notes)) {
-    notes <- notes[notes$level %in% c("warn", "error"), ]
-    
+    notes <- notes[notes$level %in% c("warn", "error", "info"), ]
+    count_info <- 1    
     for (i in seq_len(nrow(notes))) {
       level <- notes[i, ]$level
       msg <- notes[i, ]$text
+      if (count_info == 1 && level == "info") {
+        msg_info <- "Information from SoRa: \n"
+        if (loadable("cli")) {
+          msg_info <- color(msg_info, "yellow")
+        }
+        count_info <- count_info + 1
+        cat(msg_info)
+      }
+      if (level == "info") {
+        msg <- paste(symbols$bullet, msg)
+        if (loadable("cli")) {
+          msg <- color(msg, "yellow")
+        }
+      }
       switch(
         level,
+        info = sora_info(msg),
         warn = sora_warn(msg, .once = TRUE),
         error = sora_abort(msg)
       )
