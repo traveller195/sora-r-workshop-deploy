@@ -243,16 +243,17 @@ tabular <- function(df, ...) {
 } # nocov end
 
 
-#' sora_dp_overview
-#' @description Get an overview of the datapicker provided by 'SoRa'. 
-#' The output is a crosstable of the both arguments ('arg_1' and 'arg_2').
+#' @description `sora_dp_overview()`: Get an overview of the datapicker provided by 'SoRa'. 
+#' The output is a cross table of the both arguments ('arg_1' and 'arg_2').
 #'
 #' @param data_dp datapicker as dataframe or tibble
-#' @param sort_by if arg_2 is 'spatial_resolution' the data can be sort by the
-#' 'Raster'. This value is the default.
+#' @param sort_by if 'arg_2' = 'spatial_resolution' is could be that the sorting is not right,
+#' if that the case there is the possibility to sort the columns by the argument 'sort_by'.
+#' The value 'Raster' is the default for sorting.
+#' It can be depends of the data provider.
 #' @param content_dp which sheet of the datapicker will be used, if 
 #' 'data_dp' is 'NULL'. In this case this function will load the 
-#' the datapicker themselfes.
+#' the datapicker themselves.
 #' @param arg_1 argument 1. The default is 'title'.
 #' @param arg_2 argument 2. The default is 'spatial_resolution'.
 #' @rdname sora_datapicker
@@ -306,7 +307,8 @@ sora_dp_overview <- function(data_dp = NULL,
 
 
 #' sort info Data Picker
-#' @description if there is the information about the resolution in form of 'sort_by'. The output will be sorted.
+#' @description if there is the information about the resolution in form of 'sort_by'.
+#' The output will be sorted.
 #'
 #' @param overview_dp datapicker
 #' @param sort_by by which value the output will be sorted.
@@ -338,19 +340,19 @@ dp_sort <- function(overview_dp,
 }
 
 
-#' Overview for the dataset id which are offered by the provider
-#' @description get an overview of the possible dataset id which can be selected.
+#' @description `sora_dp_get_id()`: Get an overview of the possible dataset id which can be selected.
 #' The output has this columns: 'title', 'time_frame', 'spatial_resolution' and 'dataset_id'
 #' 
 #' @param data_dp datapicker
 #' @param indicator is the 'title' output in the 'datapicker'
-#' @param dataset_id argument for the 'dataset_id' can be depends of the dataprovidor.
+#' @param col_id argument for the 'dataset_id' can be depends of the data provider.
+#' Column with the information about the 'dataset_id' in the datapicker.
 #' @param content_dp selected table like "spatial"
 #' @rdname sora_datapicker
 #' @export
 sora_dp_get_id <- function(data_dp = NULL,
                            indicator,
-                           dataset_id = "dataset_id",
+                           col_id = "dataset_id",
                            content_dp = "spatial") {
   
   if (is.null(data_dp)) {
@@ -363,28 +365,28 @@ sora_dp_get_id <- function(data_dp = NULL,
   ## which indicator has the used pattern
   use_indicator <- available_indicator[grep(indicator, available_indicator)]
   indicator_list <- list()
-  check_colnames <- is.element(dataset_id, names(dp))
+  check_colnames <- is.element(col_id, names(dp))
   check_indicator <- is.element(use_indicator, available_indicator)
   
   if (!check_colnames) {
-    sora_abort(sprintf("used input for 'dataset_id': `%s` is not a valid value", dataset_id))
+    sora_abort(sprintf("used input for 'col_id': `%s` is not a valid value", col_id))
   }
   if (!isTRUE(unique(check_indicator)) | indicator == "") {
     sora_abort(sprintf("used input for 'indicator': `%s` is not a valid value", indicator))
   }
    
-  indicators <- as.data.frame.array(table(dp[, dataset_id], dp[, "title"]))
+  indicators <- as.data.frame.array(table(dp[, col_id], dp[, "title"]))
   indicators <- cbind(row.names(indicators), indicators)
   row.names(indicators) <- NULL
-  names(indicators)[1] <- dataset_id
+  names(indicators)[1] <- col_id
   names(indicators) <- tolower(names(indicators))
     
   for (i in use_indicator) {
     iteration <- which(use_indicator == i)
     output <- indicators[, i]
-    id <- indicators[output > 0, dataset_id]
-    output <- which(is.element(dp[, dataset_id], id))
-    indicator_list[[iteration]] <- dp[output, c("title", "time_frame", "spatial_resolution", dataset_id)]
+    id <- indicators[output > 0, col_id]
+    output <- which(is.element(dp[, col_id], id))
+    indicator_list[[iteration]] <- dp[output, c("title", "time_frame", "spatial_resolution", col_id)]
   } 
   names(indicator_list) <- use_indicator
   output <- indicator_list[[use_indicator[1]]]
@@ -394,5 +396,27 @@ sora_dp_get_id <- function(data_dp = NULL,
       output <- rbind(output, indicator_list[[i]])
     }
   }
+  as_df(output)
+}
+
+
+#' @description `sora_dp_info_id()`: Get info, all columns of the datapicker for the selected 'dataset_id'
+#' @param dataset_id Specific id for a dataset.
+#' @rdname sora_datapicker
+#' @export
+sora_dp_info_id <- function(data_dp = NULL,
+                            col_id = "dataset_id",
+                            content_dp = "spatial",
+                            dataset_id) {
+  
+  if (is.null(data_dp)) {
+    data_dp <- sora_datapicker(content = content_dp)
+  }
+  check_id <- is.element(dataset_id, data_dp[[col_id]])
+  if (!isTRUE(unique(check_id))) {
+    missing_id <- dataset_id[which(!is.element(dataset_id, data_dp[[col_id]]))]
+    sora_abort(sprintf(paste0("used input for" , " '", col_id, "'", ": `%s` is not a valid value"), missing_id))
+  }
+  output <- data_dp[which(is.element(data_dp[[col_id]], dataset_id)),]
   as_df(output)
 }

@@ -78,15 +78,21 @@ sora_key_status <- function(api_key = NULL) {
   resp <- api_request(endpoint = "test-connectivity", api_key = api_key)
   
   status_rep <- resp$`api-key-status`
-  key_status <- list(
-    code = status_rep$`response-code`,
-    title = status_rep$title,
-    message = status_rep$message,
-    decision = status_rep$decision
-  )
-  
-  class(key_status) <- "sora_key_status"
-  key_status
+  if (!is.null(status_rep)) {
+    key_status <- list(
+      code = status_rep$`response-code`,
+      title = status_rep$title,
+      message = status_rep$message,
+      decision = status_rep$decision
+    )
+    class(key_status) <- "sora_key_status"
+    key_status
+  } else {
+    sora_abort(
+      sprintf("Something went wrong..."),
+      "*" = sprintf("Please check if 'SoRa' is available ... use 'sora_available()'")
+    )
+  }
 }
 
 

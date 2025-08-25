@@ -138,6 +138,8 @@ sora_request <- function(dataset,
   body <- sora_body(dataset, method, provenance)
   
   res <- api_request("jobs", body = body, method = "POST", api_key = api_key)
+  res <- error_to_warn(res, condition = TRUE)
+  res <- order_notification(res)
   report_if_needed(res$validation_report, verbose)
   notify_if_needed(res$notification)
   jid <- res$job_id
@@ -170,6 +172,8 @@ sora_simulate <- function(dataset,
   body <- sora_body(dataset, method, provenance)
   
   res <- api_request("jobs", body = body, method = "POST", api_key = api_key)
+  res <- error_to_warn(res, condition = TRUE)
+  res <- order_notification(res)
   report_if_needed(res$validation_report, verbose = TRUE)
   notify_if_needed(res$notification)
   invisible()

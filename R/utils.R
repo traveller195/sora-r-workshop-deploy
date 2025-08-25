@@ -214,6 +214,8 @@ error_to_warn <- function(res, condition = FALSE) {
 #' @returns The ordered notification level in response.
 #' @noRd
 order_notification <- function(res) {
-  res$notification <- res$notification[order(res$notification$level), ]
+  if (length(res$notification$level) != 0) {
+    res$notification <- res$notification[order(res$notification$level), ]
+  }
   res
 }
