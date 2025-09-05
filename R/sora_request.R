@@ -320,6 +320,9 @@ prepare_dataset <- function(dataset, provenance) {
 prepare_provenance <- function(provenance) {
   provenance$subsample_description <- provenance$description
   provenance[c("name", "pid", "url", "description")] <- NULL
+  if (!is.null(provenance$subsample_description)) {
+    provenance <- provenance[c("visibility", "subsample_description", "authors")]
+  }
   provenance
 }
 

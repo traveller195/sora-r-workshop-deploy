@@ -29,7 +29,10 @@ api_request <- function(endpoint,
   if (!is.null(body)) {
     req <- httr2::req_body_json(req = req, data = body, na = "null")
   }
-
+  if (case.result(endpoint = endpoint)) {
+    req <- httr2::req_timeout(req = req, seconds = 120)
+  }
+  
   req <- httr2::req_error(req, is_error = function(resp) FALSE)
   resp <- httr2::req_perform(req)
   sora_extract_body(resp, check_key = check_key)

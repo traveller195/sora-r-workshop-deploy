@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><title>R: Is SoRa available?</title>
+<!DOCTYPE html><html><head><title>R: Geocoder which retuns coordinates to a given address.</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
@@ -14,37 +14,41 @@ function processMathHTML() {
 <link rel="stylesheet" type="text/css" href="R.css" />
 </head><body><div class="container"><main>
 
-<table style="width: 100%;"><tr><td>sora_available {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
+<table style="width: 100%;"><tr><td>sora_geocoder {sora}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
-<h2>Is SoRa available?</h2>
+<h2>Geocoder which retuns coordinates to a given address.</h2>
 
 <h3>Description</h3>
 
-<p>Checks whether all of the required SoRa components are up and
-working and whether your API key is authorized. <code>sora_available</code>
-always returns <code>TRUE</code> or <code>FALSE</code>. <code>sora_services</code> returns
-a list of available and unavailable services. <code>sora_key_status</code> returns
-a list containing details on the status of the API key.
+<p>Send a request with a list of addresses to the SoRa geocoder function.
+SoRa will forward the request to <code>BKG</code> and will return the coordinates.
 </p>
 
 
 <h3>Usage</h3>
 
-<pre><code class='language-R'>sora_available(services = NULL, api_key = NULL)
-
-sora_services(api_key = NULL)
-
-sora_key_status(api_key = NULL)
+<pre><code class='language-R'>sora_geocoder(input, verbose = NULL, api_key = NULL)
 </code></pre>
 
 
 <h3>Arguments</h3>
 
 <table role = "presentation">
-<tr><td><code id="services">services</code></td>
+<tr><td><code id="input">input</code></td>
 <td>
-<p>If provided, checks if the specified services are
-available. If <code>NULL</code> (default), checks if any service is available.</p>
+<p>List with the information for:
+<code>ID</code>, <code>street</code>, <code style="white-space: pre;">&#8288;house number&#8288;</code>, <code style="white-space: pre;">&#8288;zip code&#8288;</code> and <code>place</code>.</p>
+</td></tr>
+<tr><td><code id="verbose">verbose</code></td>
+<td>
+<p>A logical, character string or <code>NULL</code> that specifies if
+and how to produce messages. If <code>FALSE</code>, suppresses all informative
+messages. If a path is provided, stores all messages in the specified file.
+If <code>NULL</code>, verbosity depends on <code>getOption("sora_verbose")</code>. Use
+the latter to set verbosity across the entire session, e.g. to suppress
+messages from all package functions. Defaults to <code>NULL</code> and
+<code>getOption("sora_verbose")</code> defaults to <code>TRUE</code>, i.e., display
+messages where reasonable.</p>
 </td></tr>
 <tr><td><code id="api_key">api_key</code></td>
 <td>
@@ -70,39 +74,22 @@ access to the SoRa API.</p>
 
 <h3>Value</h3>
 
-
-<ul>
-<li><p><code>sora_available</code> returns <code>TRUE</code> or <code>FALSE</code>
+<p>A tibble or data.frame with the <code>id</code>, <code>coordinates (components)</code>
+and a <code>score</code> for quality (range from 0 to 1).
 </p>
-</li>
-<li><p><code>sora_services</code> returns a named list of class
-<code>sora_services</code> containing information about available and unavailable
-services.
-</p>
-</li>
-<li><p><code>sora_key_status</code> returns a named list of class
-<code>sora_key_status.</code>
-</p>
-</li></ul>
-
 
 
 <h3>Examples</h3>
 
 <pre><code class='language-R'>
-# Checks whether the SoRa API can be accessed
-sora_available()
-
-# See what service providers are available
-sora_services()
-
-# Get details about a provided API key
-sora_key_status()
-
-# These functions can be used to create basic control flows
-try(stopifnot(sora_available()))
-try(stopifnot("IOER" %in% sora_services()$available))
-try(stopifnot("ALLOW" %in% sora_key_status()$decision))
+addresses &lt;- data.frame(
+"id" = c("1", "2"),
+"street" = c("Einsteinufer", "An d. Wuhlheide"),
+"house_number" = c("69", "263"),
+"zip_code" = c("10587", "12555"),
+"place" = c("Berlin", "Berlin")
+)
+result &lt;- sora_geocoder(input = addresses)
 
 </code></pre>
 

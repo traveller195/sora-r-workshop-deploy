@@ -10,9 +10,9 @@
 \usage{
 sora_results(job_id, verbose = NULL, api_key = NULL)
 
-sora_jobs(api_key = NULL)
+sora_jobs(status = NULL, verbose = NULL, api_key = NULL)
 
-sora_job_status(job_id, api_key = NULL)
+sora_job_status(job_id, verbose = NULL, api_key = NULL)
 
 sora_job_done(job_id, api_key = NULL)
 
@@ -46,6 +46,8 @@ Please note that you are advised not to enter your key directly using this
 argument. If you do, please make sure that you do not publish any code files
 containing the key in plain text. Failure to do so can compromise your
 access to the SoRa API.}
+
+\item{status}{currently status for the requested linking.}
 }
 \value{
 \itemize{

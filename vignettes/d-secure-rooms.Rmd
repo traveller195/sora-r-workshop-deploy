@@ -1,0 +1,19 @@
+---
+title: "Inside the secure room"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Inside the secure room}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(sora)
+```

@@ -1,0 +1,41 @@
+---
+title: "Make a request"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Make a request}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(sora)
+```
+
+## Example: make a request
+
+Several linking are possible using SoRa. This is a basic example which shows you how to solve a common problem.
+First, make sure you attach the `sora` package to the session. For this example, we use the synthetic `ber_income` dataset.
+See `?ber_income` for details.
+
+```{r}
+head(ber_income)
+```
+
+Before you actually send requests, make sure to have an SoRa API key `vignette("Get SoRa API key", package = "sora")`.
+You will only be able to use data that you signed the necessary usage agreements for. To see whether the API is available and your key is
+valid, you can run `sora_available()`. If it returns `TRUE`, you are good to go.
+
+``` r
+sora_available()
+```
+
+SoRa accepts three types of survey datasets. You can either provide the IDs of dataset provided by SoRa, provide your own datasets, or use
+identifiers of administrative areas in Germany (e.g., zip codes or municipality keys). For our dummy example, we use `sora_custom` to
+signal that we use our own data.

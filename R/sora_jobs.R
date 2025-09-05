@@ -137,7 +137,7 @@ sora_results <- function(job_id, verbose = NULL, api_key = NULL) {
   problems <- extract_problems(out)
   out$message <- NULL
   provenance <- res$provenance
-  class(provenance) <- "sora_provenance"
+#  class(provenance) <- "sora_provenance"
   attr(out, "provenance") <- provenance
   attr(out, "problems") <- problems
   class(out) <- c("sora_results", class(out))

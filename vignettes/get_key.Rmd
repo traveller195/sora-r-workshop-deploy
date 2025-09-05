@@ -1,0 +1,41 @@
+---
+title: "Get SoRa API key"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get SoRa API key}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(sora)
+```
+
+## Get SoRa API key 
+
+Before you can use the SoRa API you need an `SoRa API Key`. The key you can get [here](https://sora.gesis.org/unofficial/sora-user-mod/users/request-api-key).
+
+You will have to proved some personal information and, importantly,
+agree to the mandatory and optional agreements. Optional agreements are
+made with the service providers and are the requirement to use their
+service. For example, if you do not agree to the user agreement of the
+IOER, then you will not be able to use their services within SoRa.
+
+Please ensure that you never publish your API key to the public in plain
+text. This also includes uploads of any kind, e.g., to GitHub. The
+package functions feature an `api_key` argument, but you are advised to
+never use it. Instead, we suggest to use one of the following options:
+
+- Set an environment variable `SORA_API_KEY` in your `.Renviron` file
+  (see [here](https://docs.posit.co/ide/user/ide/guide/environments/r/managing-r.html#renviron)
+  to learn more about `.Renviron` files)
+- Pass `api_key = "ask"` to any SoRa function. This will open up a
+  masked prompt where you can enter your API key safely. You must only
+  do this once per session.

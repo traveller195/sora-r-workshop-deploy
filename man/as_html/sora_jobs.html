@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
 <script type="text/javascript">
-const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
 function processMathHTML() {
     var l = document.getElementsByClassName('reqn');
     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
@@ -48,9 +48,9 @@ job
 
 <pre><code class='language-R'>sora_results(job_id, verbose = NULL, api_key = NULL)
 
-sora_jobs(api_key = NULL)
+sora_jobs(status = NULL, verbose = NULL, api_key = NULL)
 
-sora_job_status(job_id, api_key = NULL)
+sora_job_status(job_id, verbose = NULL, api_key = NULL)
 
 sora_job_done(job_id, api_key = NULL)
 
@@ -60,7 +60,7 @@ sora_job_delete(job_id, verbose = NULL, api_key = NULL)
 
 <h3>Arguments</h3>
 
-<table>
+<table role = "presentation">
 <tr><td><code id="job_id">job_id</code></td>
 <td>
 <p>A job ID as returned by <code>sora_request</code>.</p>
@@ -94,6 +94,10 @@ variable and can be used across sessions.
 argument. If you do, please make sure that you do not publish any code files
 containing the key in plain text. Failure to do so can compromise your
 access to the SoRa API.</p>
+</td></tr>
+<tr><td><code id="status">status</code></td>
+<td>
+<p>currently status for the requested linking.</p>
 </td></tr>
 </table>
 

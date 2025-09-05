@@ -1,0 +1,83 @@
+---
+title: "Data picker"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Data picker}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(sora)
+```
+
+## How to use the Data Picker in R
+
+This vignette should only show a little example ho to use the Data Picker. The Data Picker is very complex and can be viewed once in the browser ([Data Picker](https://sora.gesis.org/unofficial/datapicker/)) and once directly as a table.
+
+The aim of the Data Picker is to provide an overview of the possible linking methods and the available datasets.
+There exist four csv files (`provided`, `admin`, `spatial`, `linking`) which can be load in R. The default is the `provided` file, which provided the information of the `geocoded datastes`.
+
+## Load the Data Picker for the `spatial` csv file
+
+```{r}
+## load the data picker for the 'spatial datasets' and save in dp:
+dp <- sora_datapicker(content = "spatial")
+head(dp)
+```
+
+## Filter the information
+
+You can filter the information yourself or you can use the two functions (`sora_dp_overview()` and `sora_dp_get_id()`) provided by SoRa.
+To get an cross table as overview use `sora_dp_overview()` and select the two arguments (`arg_1`, `arg_2`). Possible arguments can be listed with `names(dp)`.
+
+The output of `sora_dp_overview()` is a cross table which is based on the `table()` function from the R base. The number of datasets, concerning the specific used arguments in the function, will be returned.
+The column `title` are the indicators.
+
+Which columns are in the selected Data Picker table:
+```{r}
+names(dp)
+```
+## Use the function `sora_dp_overview()`
+
+You can use the argument `data_dp` to use the information saved in `dp`. If you do not use this argument, the default will be used. In this case the default will load the `spatial` csv file for the Data Picker. With the argument `content_dp` you can select which csv file of the Data Picker will be used.
+
+```{r}
+## get the cross table for `title` and `spatial_resolution`:
+dp_overview_title <- sora_dp_overview(arg_1 = "title", 
+                                      arg_2 = "spatial_resolution")
+head(dp_overview_title)
+
+## get the cross table for `time_frame` and `spatial_resolution`:
+dp_overview_time <- sora_dp_overview(arg_1 = "time_frame",
+                                     arg_2 = "spatial_resolution")
+head(dp_overview_time)
+```
+
+## Use the function `sora_dp_get_id()`
+
+Get the `id` of the dataset for a specific `indicator`. The column `title` list all possible indicators. You can search for specific dataset id by using the SoRa function `sora_dp_get_id()`.
+In this function you can search for a specific pattern in the `indicator` argument of the Data Picker.
+The pattern is not case sensitive. For example if you are interested in the accessibility of green areas you can look for all `indicators` which concerning the keyword: `green`.
+The function will return all possible indicators in all possible spatial and time resolutions.
+The output is a tibble with the columns: `title`, `time_frame`, `spatial_resolution`, `dataset_id`. 
+
+```{r}
+sora_dp_get_id(indicator = "green")
+```
+
+## Use the function `sora_dp_info_id()`
+
+Get all available information for a given `dataset_id`. The `dataset_id` can be given as a vector if you want use more than one `dataset_id`.
+
+```{r}
+id <- c("ioer-monitor-p02rt-2018-g50", "ioer-monitor-p02rt-2018-stt")
+sora_dp_info_id(dataset_id = id)
+```

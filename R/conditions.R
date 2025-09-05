@@ -166,6 +166,9 @@ warn <- function(msg, .class = NULL, .call = sys.call(1), .env = parent.frame())
       invokeRestart("soraWarning") # nocov
     },
     soraWarning = function(cnd) {
+      if (loadable("cli")) {
+        msg_out <- color(msg_out, "magenta")
+      }
       cat(msg_out, "\n", file = stderr()) # nocov
     },
     muffleWarning = function(cnd) {

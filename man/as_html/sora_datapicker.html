@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
 <script type="text/javascript">
-const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
 function processMathHTML() {
     var l = document.getElementsByClassName('reqn');
     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
@@ -26,11 +26,13 @@ function processMathHTML() {
 data picker, which can be found under
 <a href="https://sora.gesis.org/unofficial/datapicker/">https://sora.gesis.org/unofficial/datapicker/</a>.
 </p>
-<p>Get an overview of the datapicker provided by 'SoRa'.
-The output is a crosstable of the both arguments ('arg_1' and 'arg_2').
+<p><code>sora_dp_overview()</code>: Get an overview of the datapicker provided by 'SoRa'.
+The output is a cross table of the both arguments ('arg_1' and 'arg_2').
 </p>
-<p>get an overview of the possible dataset id which can be selected.
+<p><code>sora_dp_get_id()</code>: Get an overview of the possible dataset id which can be selected.
 The output has this columns: 'title', 'time_frame', 'spatial_resolution' and 'dataset_id'
+</p>
+<p><code>sora_dp_info_id()</code>: Get info, all columns of the datapicker for the selected 'dataset_id'
 </p>
 
 
@@ -50,17 +52,23 @@ sora_dp_overview(
 
 sora_dp_get_id(
   data_dp = NULL,
-  indicator = NULL,
-  dataset_id = "dataset_id",
+  indicator,
+  col_id = "dataset_id",
+  content_dp = "spatial"
+)
+
+sora_dp_info_id(
+  data_dp = NULL,
+  col_id = "dataset_id",
   content_dp = "spatial",
-  arg = NULL
+  dataset_id
 )
 </code></pre>
 
 
 <h3>Arguments</h3>
 
-<table>
+<table role = "presentation">
 <tr><td><code id="content">content</code></td>
 <td>
 <p>The type of dataset for which to retrieve details. The
@@ -103,8 +111,10 @@ spatial linking. Defaults to <code>"IOER"</code>.</p>
 </td></tr>
 <tr><td><code id="sort_by">sort_by</code></td>
 <td>
-<p>if arg_2 is 'spatial_resolution' the data can be sort by the
-'Raster'. This value is the default.</p>
+<p>if 'arg_2' = 'spatial_resolution' is could be that the sorting is not right,
+if that the case there is the possibility to sort the columns by the argument 'sort_by'.
+The value 'Raster' is the default for sorting.
+It can be depends of the data provider.</p>
 </td></tr>
 <tr><td><code id="content_dp">content_dp</code></td>
 <td>
@@ -122,13 +132,14 @@ spatial linking. Defaults to <code>"IOER"</code>.</p>
 <td>
 <p>is the 'title' output in the 'datapicker'</p>
 </td></tr>
+<tr><td><code id="col_id">col_id</code></td>
+<td>
+<p>argument for the 'dataset_id' can be depends of the data provider.
+Column with the information about the 'dataset_id' in the datapicker.</p>
+</td></tr>
 <tr><td><code id="dataset_id">dataset_id</code></td>
 <td>
-<p>argument for the 'dataset_id' can be depends of the dataprovidor.</p>
-</td></tr>
-<tr><td><code id="arg">arg</code></td>
-<td>
-<p>selected arg</p>
+<p>Specific id for a dataset.</p>
 </td></tr>
 </table>
 

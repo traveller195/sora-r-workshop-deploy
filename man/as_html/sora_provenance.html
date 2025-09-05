@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
 <script type="text/javascript">
-const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
 function processMathHTML() {
     var l = document.getElementsByClassName('reqn');
     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
@@ -35,14 +35,15 @@ provide the dataset's metadata if applicable.
   name = NULL,
   pid = NULL,
   url = NULL,
-  description = NULL
+  description = NULL,
+  authors = NULL
 )
 </code></pre>
 
 
 <h3>Arguments</h3>
 
-<table>
+<table role = "presentation">
 <tr><td><code id="visible">visible</code></td>
 <td>
 <p>Whether to generate provenance record or not. If
@@ -61,6 +62,10 @@ accurate information to these arguments.</p>
 <p>A character string describing the subsample analyzed
 in the linking job. For optimal reproducibility, make sure to provide
 accurate information to these arguments.</p>
+</td></tr>
+<tr><td><code id="authors">authors</code></td>
+<td>
+<p>Name of the author for the request. Will be used for the provenance record.</p>
 </td></tr>
 </table>
 
@@ -85,7 +90,8 @@ data &lt;- sora_custom(ber_income, crs = 3035)
 sora_provenance(
   visible = TRUE,
   name = "Household income, Berlin",
-  url = "https://sora-service.org/"
+  url = "https://sora-service.org/",
+  authors = "John Doe"
 )
 </code></pre>
 

@@ -171,6 +171,7 @@ sora_admin <- function(.data, schema) {
 #' @param description A character string describing the subsample analyzed
 #' in the linking job. For optimal reproducibility, make sure to provide
 #' accurate information to these arguments.
+#' @param authors Name of the author for the request. Will be used for the provenance record.
 #'
 #' @returns An object of class \code{sora_provenance}.
 #'
@@ -189,18 +190,21 @@ sora_admin <- function(.data, schema) {
 #' sora_provenance(
 #'   visible = TRUE,
 #'   name = "Household income, Berlin",
-#'   url = "https://sora-service.org/"
+#'   url = "https://sora-service.org/",
+#'   authors = "John Doe"
 #' )
 sora_provenance <- function(visible = FALSE,
                             name = NULL,
                             pid = NULL,
                             url = NULL,
-                            description = NULL) {
+                            description = NULL,
+                            authors = NULL) {
   check_flag(visible)
   check_string(name, null = TRUE)
   check_string(pid, null = TRUE)
   check_string(url, null = TRUE)
   check_string(description, null = TRUE)
+  check_string(authors, null = TRUE)
   
   visibility <- ifelse(visible, "visible", "hidden")
   obj <- list(
@@ -208,7 +212,8 @@ sora_provenance <- function(visible = FALSE,
     pid = pid,
     url = url,
     description = description,
-    visibility = visibility
+    visibility = visibility,
+    authors = authors
   )
   class(obj) <- "sora_provenance"
   obj

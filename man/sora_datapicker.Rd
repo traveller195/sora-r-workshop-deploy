@@ -5,6 +5,7 @@
 \alias{sora_arguments}
 \alias{sora_dp_overview}
 \alias{sora_dp_get_id}
+\alias{sora_dp_info_id}
 \title{Data picker}
 \usage{
 sora_datapicker(content = c("provided", "admin", "spatial", "linking"))
@@ -22,8 +23,15 @@ sora_dp_overview(
 sora_dp_get_id(
   data_dp = NULL,
   indicator,
-  dataset_id = "dataset_id",
+  col_id = "dataset_id",
   content_dp = "spatial"
+)
+
+sora_dp_info_id(
+  data_dp = NULL,
+  col_id = "dataset_id",
+  content_dp = "spatial",
+  dataset_id
 )
 }
 \arguments{
@@ -51,8 +59,10 @@ spatial linking. Defaults to \code{"IOER"}.}
 
 \item{data_dp}{datapicker}
 
-\item{sort_by}{if arg_2 is 'spatial_resolution' the data can be sort by the
-'Raster'. This value is the default.}
+\item{sort_by}{if 'arg_2' = 'spatial_resolution' is could be that the sorting is not right,
+if that the case there is the possibility to sort the columns by the argument 'sort_by'.
+The value 'Raster' is the default for sorting.
+It can be depends of the data provider.}
 
 \item{content_dp}{selected table like "spatial"}
 
@@ -62,7 +72,10 @@ spatial linking. Defaults to \code{"IOER"}.}
 
 \item{indicator}{is the 'title' output in the 'datapicker'}
 
-\item{dataset_id}{argument for the 'dataset_id' can be depends of the dataprovidor.}
+\item{col_id}{argument for the 'dataset_id' can be depends of the data provider.
+Column with the information about the 'dataset_id' in the datapicker.}
+
+\item{dataset_id}{Specific id for a dataset.}
 }
 \value{
 \itemize{
@@ -94,11 +107,13 @@ This function provides a programmatic interface to the web version of the
 data picker, which can be found under
 \url{https://sora.gesis.org/unofficial/datapicker/}.
 
-Get an overview of the datapicker provided by 'SoRa'.
-The output is a crosstable of the both arguments ('arg_1' and 'arg_2').
+\code{sora_dp_overview()}: Get an overview of the datapicker provided by 'SoRa'.
+The output is a cross table of the both arguments ('arg_1' and 'arg_2').
 
-get an overview of the possible dataset id which can be selected.
+\code{sora_dp_get_id()}: Get an overview of the possible dataset id which can be selected.
 The output has this columns: 'title', 'time_frame', 'spatial_resolution' and 'dataset_id'
+
+\code{sora_dp_info_id()}: Get info, all columns of the datapicker for the selected 'dataset_id'
 }
 \examples{
 \dontshow{if (isTRUE(Sys.getenv("SORA_RUN_EXAMPLES"))) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

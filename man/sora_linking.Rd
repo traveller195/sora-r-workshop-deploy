@@ -36,35 +36,295 @@ The following is a basic list of possible
     (see \code{\link{sora_datapicker}}) for more accurate descriptions of
     possible arguments.
 \describe{
+\item{\code{aggregate_attribute}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema                    \cr
+ \code{output}         \tab character \tab no \tab min;max;mean;median;sd;sum;mode
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema                    \cr
+ \code{output}         \tab character \tab no \tab min;max;mean;median;sd;sum;mode
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema          \cr
+ \code{output}         \tab character \tab no \tab min;max;mean;sum;mode
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema   \cr
+ \code{output}         \tab character \tab no \tab mode;histogram
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema                    \cr
+ \code{output}         \tab character \tab no \tab min;max;mean;median;sd;sum;mode
+}
+}\cr
 \item{\code{aggregate_attribute}}{\tabular{lllll}{
  \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
-  \code{buffer_logic} \tab character \tab no \tab  \tab square                          \cr
- \code{length}       \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
- \code{output}       \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode 
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode 
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode 
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;sum;mode           
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab mode;histogram                  
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode 
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode                                                 
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode                                                 
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;sum;mode                                                           
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000\cr
+ \code{output}         \tab character \tab no \tab  \tab mode;histogram                                                                  
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode                                                 
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode 
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode 
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;sum;mode           
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab mode;histogram                  
+}
+}\cr
+\item{\code{aggregate_attribute}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000\cr
+ \code{output}         \tab character \tab no \tab  \tab min;max;mean;median;sd;sum;mode 
+}
+}\cr
+\item{\code{area_polygons}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema
 }
 }\cr
 \item{\code{area_polygons}}{\tabular{lllll}{
  \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
-  \code{buffer_logic} \tab character \tab no \tab  \tab square                          \cr
- \code{length}       \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+}
+}\cr
+\item{\code{area_polygons}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+}
+}\cr
+\item{\code{area_polygons}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+}
+}\cr
+\item{\code{count_objects}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema
+}
+}\cr
+\item{\code{count_objects}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema
+}
+}\cr
+\item{\code{count_objects}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema
 }
 }\cr
 \item{\code{count_objects}}{\tabular{lllll}{
  \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
-  \code{buffer_logic} \tab character \tab no \tab  \tab square                          \cr
- \code{length}       \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+}
+}\cr
+\item{\code{count_objects}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+}
+}\cr
+\item{\code{count_objects}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+}
+}\cr
+\item{\code{count_objects}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+}
+}\cr
+\item{\code{count_objects}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+}
+}\cr
+\item{\code{count_objects}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+}
+}\cr
+\item{\code{count_objects}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+}
+}\cr
+\item{\code{count_objects}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+}
+}\cr
+\item{\code{count_objects}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+}
+}\cr
+\item{\code{length_lines}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab area_schema
 }
 }\cr
 \item{\code{length_lines}}{\tabular{lllll}{
  \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
-  \code{buffer_logic} \tab character \tab no \tab  \tab square                          \cr
- \code{length}       \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+  \code{selection_area} \tab character \tab no \tab  \tab circle                          \cr
+ \code{radius}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
+}
+}\cr
+\item{\code{length_lines}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab isochrone                                                                       \cr
+ \code{transport_mode} \tab character \tab no \tab  \tab foot-walking;cycling-regular;driving-car                                        \cr
+ \code{routing_type}   \tab character \tab no \tab  \tab time;distance                                                                   \cr
+ \code{interval}       \tab numeric   \tab no \tab 1, 45, 1, 10000 \tab for Time in Minutes between 1 and 45; for Distance in Meters between 1 and 10000
+}
+}\cr
+\item{\code{length_lines}}{\tabular{lllll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Range} \tab \strong{Details} \cr
+  \code{selection_area} \tab character \tab no \tab  \tab square                          \cr
+ \code{length}         \tab numeric   \tab no \tab 1, 20000 \tab In Meters; Range from 1 to 20000
 }
 }\cr
 \item{\code{lookup}}{No parameters defined.}\cr
+\item{\code{lookup}}{No parameters defined.}\cr
+\item{\code{lookup}}{No parameters defined.}\cr
+\item{\code{lookup}}{No parameters defined.}\cr
 \item{\code{nearest_poi}}{\tabular{llll}{
  \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
-  \code{routing_logic} \tab character \tab no \tab straight_line
+  \code{routing_type}   \tab character \tab no \tab fastest_route                           \cr
+ \code{transport_mode} \tab character \tab no \tab foot-walking;cycling-regular;driving-car
+}
+}\cr
+\item{\code{nearest_poi}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{routing_type}   \tab character \tab no \tab shortest_route                          \cr
+ \code{transport_mode} \tab character \tab no \tab foot-walking;cycling-regular;driving-car
+}
+}\cr
+\item{\code{nearest_poi}}{\tabular{llll}{
+ \strong{Name} \tab \strong{Data type} \tab \strong{Optional?} \tab \strong{Details} \cr
+  \code{routing_type} \tab character \tab no \tab euclidean_distance
 }
 }\cr
 }

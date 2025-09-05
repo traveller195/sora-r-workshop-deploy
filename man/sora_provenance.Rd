@@ -9,7 +9,8 @@ sora_provenance(
   name = NULL,
   pid = NULL,
   url = NULL,
-  description = NULL
+  description = NULL,
+  authors = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ accurate information to these arguments.}
 \item{description}{A character string describing the subsample analyzed
 in the linking job. For optimal reproducibility, make sure to provide
 accurate information to these arguments.}
+
+\item{authors}{Name of the author for the request. Will be used for the provenance record.}
 }
 \value{
 An object of class \code{sora_provenance}.
@@ -49,6 +52,7 @@ data <- sora_custom(ber_income, crs = 3035)
 sora_provenance(
   visible = TRUE,
   name = "Household income, Berlin",
-  url = "https://sora-service.org/"
+  url = "https://sora-service.org/",
+  authors = "John Doe"
 )
 }
