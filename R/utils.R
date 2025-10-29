@@ -229,19 +229,3 @@ case.result <- function(endpoint) {
   length(grep("result", endpoint)) == 1
 }
 
-
-#' Check the style of the input for the list of addresses.
-#' @param input List with the information for:
-#' `ID`, `street`, `house number`, `zip code` and `place`
-#' @noRd
-check_address_list <- function(input) {
-  input <- as.data.frame(lapply(input, as.character))
-  required_column <- c("ID", "street", "house_number", "zip_code", "place")
-  abort_req <- any(!is.element(required_column, names(input)))
-  
-  if (abort_req) {
-    missing_column <- setdiff(required_column, names(input))
-    sora_abort("i" = "missing required column:", paste("-", quote_arg(missing_column)))
-  }
-  input[, required_column]
-}
